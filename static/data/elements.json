@@ -268,27 +268,27 @@
     },
     {
         "id": "lhemi1",
-        "name": "Left hemisphere",
+        "name": "Left hemisphere Red BA44 Blue BA45",
         "type": "mesh",
-        "url": "data/mesh_lhemi1.json",
+        "url": "data/mesh_lhemi_ba44_ba45.json",
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false
     },
     {
         "id": "lhemi2",
-        "name": "Left hemisphere",
+        "name": "Left hemisphere Red BA44 Blue BA45 Green STG",
         "type": "mesh",
-        "url": "data/mesh_lhemi2.json",
+        "url": "data/mesh_lhemi_ba44_ba45_stg.json",
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false
     },
     {
         "id": "lhemi3",
-        "name": "Left hemisphere",
+        "name": "Left hemisphere Red BA44 Blue BA45 Green STG Yellow BA6",
         "type": "mesh",
-        "url": "data/mesh_lhemi3.json",
+        "url": "data/mesh_lhemi_ba44_ba45_stg_ba6.json",
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false
