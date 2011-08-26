@@ -1,0 +1,5 @@
+<map name="map_{{ figure.id }}">
+    {% for area in figure.imagemapareas.all %}
+        <area shape="{{ area.shape }}" coords="{{ area.coords }}" href="{{ area.href }}" title="{{ area.title }}" />
+    {% endfor %}
+</map>

@@ -1,0 +1,39 @@
+#nav, #viewer-nav {
+    @include sans-serif;
+    padding: 0 12px 12px 12px;
+    font-size: 12px;
+    
+    ul {
+        @include inline-list;
+        
+        li {
+            margin-right: 1em;
+            
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+#nav {
+    position: relative;
+    z-index: 2;
+}
+
+#viewer-nav {
+    position: relative;
+    text-align: right;
+    z-index: 3;
+}
+
+a.flash {
+    $color: mix($link-color, $page-background-color);
+    color: $color;
+    outline: 2px solid $color;
+    outline-offset: 2px;
+}
+
+a.flash-transition {
+    @include transition('outline color', 200ms);
+}

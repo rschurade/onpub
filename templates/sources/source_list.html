@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block page_title %}Sources{% endblock page_title %}
+
+{% block content %}
+    <h1>Sources</h1>
+    
+    <ol class="sources">
+        {% for source in source_list %}{% if source.title or perms.sources.change_source %}
+            <li id="{{ source.slug }}">
+                {% if source.title %}<strong>{{ source.title }}</strong>{% else %}<del>{{ source.identifier }}</del>{% endif %}
+                {{ source.text }}
+                {% if perms.sources.change_source %}<a href="{% url admin:sources_source_change source.id %}" class="edit">Edit</a>{% endif %}
+            </li>
+        {% endif %}{% endfor %}
+    </ol>
+{% endblock content %}

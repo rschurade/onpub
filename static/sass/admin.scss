@@ -1,0 +1,38 @@
+body.content-section {
+    #id_title, #id_subtitle {
+        width: 610px;
+    }
+    
+    #id_text, #id_text_html {
+        font-family: monospace;
+    }
+    
+    #id_text {
+        height: 500px;
+    }
+    
+    #id_text_preview {
+        width: 1280px;
+        height: 480px;
+    }
+}
+
+body.rsthelp-item {
+    #id_code, #id_code_html {
+        font-family: monospace;
+    }
+}
+
+body.change-list {
+    .module {
+        table {
+            p {
+                padding: 0;
+            }
+            
+            tt {
+                white-space: pre;
+            }
+        }
+    }
+}

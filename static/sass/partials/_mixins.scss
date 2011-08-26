@@ -1,0 +1,10 @@
+@mixin box($width, $padding-h: 24px, $padding-v: 18px) {
+    background: $box-background-color;
+    @include box-shadow;
+    padding: $padding-v $padding-h;
+    width: $width - 2 * $padding-h;
+}
+
+@mixin hyphens($value) {
+    @include experimental(hyphens, $value, -moz, -webkit, -o, not -ms, not -khtml, official);
+}

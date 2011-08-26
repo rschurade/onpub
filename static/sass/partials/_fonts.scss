@@ -1,0 +1,10 @@
+$font-family-sans-serif: "Droid Sans", sans-serif;
+$font-family-serif: "Droid Serif", serif;
+
+@mixin serif {
+    font-family: $font-family-serif;
+}
+
+@mixin sans-serif {
+    font-family: $font-family-sans-serif;
+}

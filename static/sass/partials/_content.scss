@@ -1,0 +1,138 @@
+p, ul, ol, dl, td, .line-block {
+    line-height: 26px;
+    @include hyphens(auto);
+}
+
+p + p,
+.line-block + p {
+    text-indent: 1em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: $headline-color;
+    @include sans-serif;
+    font-weight: bold;
+    margin: 1em 0 0.5em;
+    text-rendering: optimizeLegibility;
+}
+
+h1 {
+    font-size: 18px;
+}
+
+em {
+    font-style: italic;
+}
+
+strong {
+    font-weight: bold;
+}
+
+#content {
+    header {
+        margin-bottom: 18px;
+        
+        h1, h2 {
+            margin: 0;
+            line-height: 1.5;
+        }
+        
+        h1 {
+            font-size: 22px;
+        }
+        
+        h2 {
+            font-size: 18px;
+        }
+    }
+    
+    a.source {
+        color: inherit;
+        font-style: italic;
+        
+        &:hover {
+            color: $link-color;
+        }
+    }
+    
+    a.glossary {
+        cursor: help;
+        color: inherit;
+        border-bottom: 1px dotted $text-color;
+    }
+    
+    a.scene, a.highlight {
+        color: inherit;
+        background-color: mix($page-background-color, #000, 95%);
+        padding: 0 2px;
+        @include border-radius(2px);
+    }
+    
+    a.scene {
+        &:hover {
+            color: $link-color;
+        }
+    }
+}
+.prev-next {
+    position: absolute;
+    left: -8px;
+    right: -8px;
+    
+    &.top {
+        top: -28px;
+    }
+    
+    &.bottom {
+        bottom: -32px;
+    }
+    
+    a {
+        position: absolute;
+        color: $text-color;
+        @include sans-serif;
+        font-size: 12px;
+        
+        &:after, &:before {
+            color: $link-color;
+        }
+        
+        &.prev {
+            left: 0;
+            
+            &:before {
+                content: "« ";
+            }
+        }
+        
+        &.next {
+            right: 0;
+            
+            &:after {
+                content: " »";
+            }
+        }
+        
+        &.edit {
+            width: 30px;
+            text-align: center;
+            left: 50%;
+            margin-left: -15px;
+        }
+    }
+}
+
+a.edit {
+    @include sans-serif;
+    text-transform: uppercase;
+    font-size: 80%;
+    font-weight: bold;
+    background-color: mix($text-color, #FFF);
+    color: $page-background-color;
+    padding: 1px 2px 0 2px;
+    @include border-radius(4px);
+    
+    &:hover {
+        background-color: $text-color;
+    }
+}

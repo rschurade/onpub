@@ -1,0 +1,43 @@
+{% extends "admin/change_form.html" %}
+
+{% block after_field_sets %}
+    {% if original.id %}
+        <fieldset class="module" id="imagemap">
+            <div class="form-row">
+                {% with figure=original %}
+                    {% include "figures/imagemap.html" %}
+                {% endwith %}
+                <img src="{{ original.image.url }}" usemap="#map_{{ original.id }}" style="vertical-align: baseline;" />
+                <canvas id="imagemap-canvas" width="{{ original.image.width }}" height="{{ original.image.height }}"></canvas>
+                <div class="coords-helper"> </div>
+            </div>
+        </fieldset>
+    {% endif %}
+    
+    <style type="text/css">
+        .inline-group .tabular tr.has_original td.original p {
+            display: none;
+        }
+        .inline-group .tabular p.help {
+            margin-bottom: 0;
+            padding-left: 0;
+        }
+        .inline-group .tabular tr.has_original td {
+            padding-top: 5px;
+        }
+        td.shape .color {
+            width: 2em;
+            height: 2em;
+            margin-top: 0.5em;
+        }
+        canvas.active {
+            -webkit-box-shadow: rgba(255,255,0,0.4) 0 0 5px 2px;
+            -moz-box-shadow: rgba(255,255,0,0.4) 0 0 5px 2px;
+            box-shadow: rgba(255,255,0,0.4) 0 0 5px 2px;
+            cursor: crosshair;
+        }
+    </style>
+{% endblock %}
+
+
+{% block after_related_objects %}{% endblock %}

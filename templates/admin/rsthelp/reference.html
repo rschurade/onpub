@@ -1,0 +1,45 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+    <style>
+        table.reference {
+            outline: 1px solid #EEE;
+        }
+        table.reference > tbody > tr > .code {
+            font-weight: normal;
+            border-right: 1px solid #EEE;
+            padding-top: 0;
+        }
+        table.reference > tbody > tr > td {
+            padding-top: 12px;
+        }
+        table.reference td, .reference th {
+            vertical-align: top;
+        }
+        table.reference > thead > th {
+            font-weight: bold;
+        }
+        table.reference th.title {
+            background: #eee;
+        }
+    </style>
+    <table class="reference">
+        <tbody>
+            {% for item in item_list %}
+                {% ifchanged item.title %}
+                    <tr>
+                        <th colspan="2" class="title">{{ item.title }}</th>
+                    </tr>
+                {% endifchanged %}
+                <tr>
+                    <th class="code">
+                        <pre>{{ item.code }}</pre>
+                    </th>
+                    <td>
+                        {{ item.code_html|safe }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}

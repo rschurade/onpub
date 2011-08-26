@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load restmarkup %}
+
+{% block page_title %}{{ section.title }}{% endblock page_title %}
+
+{% block data_attr %}{% spaceless %}
+    {% if section.scene %}data-scene="{{ section.scene }}"{% endif %}
+    {% if previous %}data-previous-section="{{ previous.get_absolute_url }}"{% endif %}
+    {% if next %}data-next-section="{{ next.get_absolute_url }}"{% endif %}
+{% endspaceless %}{% endblock %}
+
+{% block content %}
+    <nav class="prev-next top">
+        {% if previous %}<a href="{{ previous.get_absolute_url }}" class="prev"><u>p</u>revious</a>{% endif %}
+        {% if perms.content.change_section %}<a href="{% url admin:content_section_change section.id %}" class="edit">edit</a>{% endif %}
+        {% if next %}<a href="{{ next.get_absolute_url }}" class="next"><u>n</u>ext</a>{% endif %}
+    </nav>
+    
+    <header>
+        <h1>{{ section.title }}</h1>
+        {% if section.subtitle %}<h2>{{ section.subtitle }}</h2>{% endif %}
+    </header>
+    
+    {{ section.text_html|safe }}
+    
+    {% if section.figure %}
+        <figure>
+            {% with figure=section.figure %}
+                {% include "figures/imagemap.html" %}
+            {% endwith %}
+            <div class="image">
+                {% with img=section.figure.image %}<img src="{{ img.url }}" width="{{ img.width }}" height="{{ img.height }}" usemap="#map_{{ section.figure.id }}">{% endwith %}
+            </div>
+            <figcaption>
+                <h1>Figure {{ section.figure.number }}: {{ section.figure.title }}</h1>
+                {% if section.figure.text %}{{ section.figure.text_html|safe }}{% endif %}
+            </figcaption>
+        </figure>
+    {% endif %}
+    
+    <nav class="prev-next bottom">
+        {% if previous %}<a href="{{ previous.get_absolute_url }}" class="prev"><u>p</u>revious</a>{% endif %}
+        {% if next %}<a href="{{ next.get_absolute_url }}" class="next"><u>n</u>ext</a>{% endif %}
+    </nav>
+{% endblock %}
+
+{% block viewer_fallback %}
+    {% if section.fallback_image %}<img src="{{ section.fallback_image.url }}" />{% endif %}
+{% endblock %}

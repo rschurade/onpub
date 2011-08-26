@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block page_title %}Glossary{% endblock page_title %}
+
+{% block content %}
+    <h1>Glossary</h1>
+    
+    <div class="glossary">
+        <dl>
+            {% for term in term_list %}
+                <dt><a href="{{ term.get_absolute_url }}">{{ term.term }}</a></dt>
+                <dd>{{ term.description|truncatewords_html:10 }}{% if perms.glossary.change_term %} <a href="{% url admin:glossary_term_change term.id %}" class="edit">Edit</a>{% endif %}</dd>
+            {% endfor %}
+        </dl>
+    </div>
+{% endblock content %}

@@ -1,0 +1,296 @@
+[
+    {
+        "id": "lhemi",
+        "name": "Left hemisphere",
+        "type": "mesh",
+        "url": "data/mesh_lhemi.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false
+    },
+    {
+        "id": "rhemi",
+        "name": "Right hemisphere",
+        "type": "mesh",
+        "url": "data/mesh_rhemi.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false
+    },
+    {
+        "id": "head",
+        "name": "Head",
+        "type": "mesh",
+        "url": "data/mesh_head.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"color": {"r": 0.89, "g": 0.77, "b": 0.64}
+    },
+	{
+        "id": "offset",
+        "name": "Brain Surface",
+        "type": "mesh",
+        "url": "data/mesh_offset1.json",
+		"transparency": 0.7,
+		"display": false,
+		"cutFS": false
+    },
+    {
+        "id": "fib1",
+        "name": "ac left",
+        "type": "fibre",
+        "url": "data/fib_ac_left.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+    },
+    {
+        "id": "fib2",
+        "name": "ac right",
+        "type": "fibre",
+        "url": "data/fib_ac_right.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+    },
+    {
+        "id": "fib3",
+        "name": "atr left",
+        "type": "fibre",
+        "url": "data/fib_atr_left.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+    },
+	{
+        "id": "fib4",
+        "name": "atr_right",
+        "type": "fibre",
+        "url": "data/fib_atr_right.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+    },
+	{
+        "id": "fib5",
+        "name": "cc body",
+        "type": "fibre",
+        "url": "data/fib_cc_body.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+    },
+	{
+        "id": "fib6",
+        "name": "cc genu",
+        "type": "fibre",
+        "url": "data/fib_cc_genu.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+    },
+	{
+        "id": "fib7",
+        "name": "cc splenium",
+        "type": "fibre",
+        "url": "data/fib_cc_splen.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+    },
+	{
+        "id": "fib8",
+        "name": "cingulum left",
+        "type": "fibre",
+        "url": "data/fib_cg_left.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+    },
+	{
+        "id": "fib9",
+        "name": "cingulum right",
+        "type": "fibre",
+        "url": "data/fib_cg_right.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+    },
+	{
+        "id": "fib10",
+        "name": "cst left",
+        "type": "fibre",
+        "url": "data/fib_cst_left.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+    },
+	{
+        "id": "fib11",
+        "name": "cst right",
+        "type": "fibre",
+        "url": "data/fib_cst_right.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+    },
+	{
+        "id": "fib12",
+        "name": "extreme capsule left",
+        "type": "fibre",
+        "url": "data/fib_ecfs_left.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+    },
+	{
+        "id": "fib13",
+        "name": "extreme capsule right",
+        "type": "fibre",
+        "url": "data/fib_ecfs_right.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+    },
+	{
+        "id": "fib14",
+        "name": "ilf left",
+        "type": "fibre",
+        "url": "data/fib_ilf_left.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+    },
+	{
+        "id": "fib15",
+        "name": "ilf right",
+        "type": "fibre",
+        "url": "data/fib_ilf_right.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+    },
+	{
+        "id": "fib16",
+        "name": "post arcuate left",
+        "type": "fibre",
+        "url": "data/fib_acp_left.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+    },
+	{
+        "id": "fib17",
+        "name": "post arcuate right",
+        "type": "fibre",
+        "url": "data/fib_acp_right.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+    },
+	{
+        "id": "fib18",
+        "name": "slf3 left",
+        "type": "fibre",
+        "url": "data/fib_slf3_left.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+    },
+	{
+        "id": "fib19",
+        "name": "slf3 right",
+        "type": "fibre",
+        "url": "data/fib_slf3_right.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+    },
+	{
+        "id": "fib20",
+        "name": "str left",
+        "type": "fibre",
+        "url": "data/fib_str_left.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+    },
+	{
+        "id": "fib21",
+        "name": "str right",
+        "type": "fibre",
+        "url": "data/fib_str_right.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+    },
+	{
+        "id": "fib22",
+        "name": "unc left",
+        "type": "fibre",
+        "url": "data/fib_unc_left.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+    },
+	{
+        "id": "fib23",
+        "name": "unc right",
+        "type": "fibre",
+        "url": "data/fib_unc_right.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+    },
+    {
+        "id": "lhemi1",
+        "name": "Left hemisphere",
+        "type": "mesh",
+        "url": "data/mesh_lhemi1.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false
+    },
+    {
+        "id": "lhemi2",
+        "name": "Left hemisphere",
+        "type": "mesh",
+        "url": "data/mesh_lhemi2.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false
+    },
+    {
+        "id": "lhemi3",
+        "name": "Left hemisphere",
+        "type": "mesh",
+        "url": "data/mesh_lhemi3.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false
+    }  
+]

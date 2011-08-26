@@ -1,0 +1,14 @@
+body {
+    font-family: sans-serif;
+    padding: 24px 0;
+    overflow-y: scroll;
+    background-color: $page-background-color;
+    color: $text-color;
+    @include serif;
+    font-size: 15px;
+}
+
+a {
+    color: $link-color;
+    text-decoration: none;
+}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load restmarkup %}
+
+{% block page_title %}Table of Contents{% endblock page_title %}
+
+{% block content %}
+    <ul class="toc">
+        {% for section in section_list %}
+            <li>
+                {% if section.number %}<span class="number">{{ section.number }}</span>{% endif %}
+                <a href="{{ section.get_absolute_url }}">{{ section.title }}{% if section.subtitle %}<br />{{ section.subtitle }}{% endif %}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

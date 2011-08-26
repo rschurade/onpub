@@ -1,0 +1,31 @@
+@import "compass/reset";
+@import "compass";
+
+@import "partials/colors";
+@import "partials/fonts";
+
+$default-box-shadow-color: rgba(0,0,0,0.3);
+$default-box-shadow-h-offset: 0;
+$default-box-shadow-v-offset: 0;
+$default-box-shadow-blur: 5px;
+
+$content-width: 550px;
+$viewer-width: 400px;
+$viewer-height: $viewer-width;
+$gap-width: 16px;
+
+@import "partials/mixins";
+@import "partials/base";
+@import "partials/layout";
+@import "partials/nav";
+@import "partials/loading";
+@import "partials/history";
+@import "partials/content";
+@import "partials/figures";
+@import "partials/viewer";
+@import "partials/toc";
+@import "partials/glossary";
+@import "partials/sources";
+@import "partials/footer";
+@import "partials/errors";
+@import "partials/responsive";

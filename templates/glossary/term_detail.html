@@ -1,0 +1,10 @@
+{% extends "glossary/term_list.html" %}
+
+{% block page_title %}Glossary: {{ term.term }}{% endblock page_title %}
+
+{% block content %}
+    <h1>{{ term.term }}</h1>
+    {{ term.description|linebreaks }}
+    
+    {% if perms.glossary.change_term %} <a href="{% url admin:glossary_term_change term.id %}" class="edit">Edit</a>{% endif %}
+{% endblock content %}

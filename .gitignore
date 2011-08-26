@@ -1,0 +1,5 @@
+/.project
+/database.db
+/django.wsgi
+/local_settings.py
+/local_settings.pyc

@@ -1,0 +1,13 @@
+.toc {
+    li {
+        padding-left: 24px;
+        position: relative;
+        line-height: 1.2;
+        margin-bottom: 0.5em;
+        
+        .number {
+            position: absolute;
+            left: 0;
+        }
+    }
+}

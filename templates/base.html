@@ -1,0 +1,83 @@
+{% load compress content_tags %}<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block page_title %}Page title{% endblock page_title %}</title>
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold|Droid+Serif:regular,bold,italic&amp;v1" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}stylesheets/screen.css" />
+        {% block meta %}
+        {% endblock %}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    </head>
+    <body class="{% block body_class %}{% endblock %}">
+        {% block body %}
+        <div id="wrapper" {% block data_attr %}{% endblock %}>
+            <div id="content-container">
+                <nav id="nav">
+                    <ul>
+                        <li><a href="/" class="intro"><u>I</u>ntroduction</a></li>
+                        <li><a href="{% url toc %}" class="toc"><u>T</u>able of Contents</a></li>
+                        <li><a href="{% url glossary_list %}" class="glossary"><u>G</u>lossary</a></li>
+                        <li><a href="{% url source_list %}" class="sources"><u>S</u>ources</a></li>
+                    </ul>
+                </nav>
+                <div id="content-outer">
+                    <section id="content"{% if is_ajax %} class="transition-in"{% endif %}>
+                        {% block content %}
+                        {% endblock content %}
+                    </section>
+                </div>
+            </div>
+            {% block sidebar %}
+            <div id="sidebar-container" class="fixed">
+                <aside id="sidebar">
+                    <nav id="viewer-nav">
+                        <ul>
+                            <li><a href="#controls"><u>C</u>ontrols</a></li>
+                            <li><a href="#reset-view"><u>R</u>eset view</a></li>
+                        </ul>
+                    </nav>
+                    <div id="viewer"{% if noviewer %} class="deactivated"{% endif %}>
+                        <canvas id="viewer-canvas"><div id="viewer-fallback">{% block viewer_fallback %}{% endblock %}</div></canvas>
+                        <div id="controls">
+                            <div id="controls-toggles">
+                            </div>
+                            <div id="controls-slices">
+                                <div><label for="sliceX">X</label> <input type="range" min="0" max="159" id="sliceX" value="80" step="1" /> <span class="value"></span></div>
+                                <div><label for="sliceY">Y</label> <input type="range" min="0" max="199" id="sliceY" value="100" step="1" /> <span class="value"></span></div>
+                                <div><label for="sliceZ">Z</label> <input type="range" min="0" max="159" id="sliceZ" value="80" step="1" /> <span class="value"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="toggles">
+                        <section id="elements"></section>
+                        <section id="activations"></section>
+                    </div>
+                    <div id="webgl-not-supported">
+                        <p>Sadly your browser does not support WebGL. If it did you would see an interactive 3D visualisation instead of the static image above. You may want to <a href="http://get.webgl.org/">get a browser that supports WebGL</a>.</p>
+                    </div>
+                </aside>
+            </div>
+            {% endblock %}
+            <footer id="footer">
+                Copyright &copy; 2011 A. D. Friederici
+            </footer>
+        </div>
+        {% compress js %}
+            <script>
+                window.settings = {'STATIC_URL': '{{ STATIC_URL }}'};
+            </script>
+            <script src="{{ STATIC_URL }}javascripts/jquery.js"></script>
+            <script src="{{ STATIC_URL }}javascripts/jquery.scrollto.js"></script>
+            <script src="{{ STATIC_URL }}javascripts/html5slider.js"></script>
+            <script src="{{ STATIC_URL }}javascripts/webgl-debug.js"></script>
+            <script src="{{ STATIC_URL }}javascripts/glMatrix-0.9.5.min.js"></script>
+            <script src="{{ STATIC_URL }}javascripts/webgl-utils.js"></script>
+            <script src="{{ STATIC_URL }}javascripts/utils.js"></script>
+            <script src="{{ STATIC_URL }}javascripts/arcball.js"></script>
+            <script src="{{ STATIC_URL }}javascripts/viewer.js"></script>
+            <script src="{{ STATIC_URL }}javascripts/ui.js"></script>
+        {% endcompress %}
+        {% endblock body %}
+    </body>
+</html>

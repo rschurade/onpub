@@ -1,0 +1,15 @@
+#content {
+    @include transition('-webkit-transform opacity', 200ms);
+    @include translateY(0);
+    position: relative;
+    
+    &.transition-out {
+        @include translateY(-20px);
+        @include opacity(0);
+    }
+    
+    &.transition-in {
+        @include translateY(20px);
+        @include opacity(0);
+    }
+}
