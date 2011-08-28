@@ -1,7 +1,7 @@
 from django.core.management.base import NoArgsCommand
 from django.conf import settings
 from django.utils.importlib import import_module
-from mpifibrebundles.content.models import Section
+from onpub.content.models import Section
 
 class Command(NoArgsCommand):
     can_import_settings = True

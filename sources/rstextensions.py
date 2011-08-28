@@ -5,7 +5,7 @@ from django.template.defaultfilters import slugify
 from docutils import nodes
 from docutils.parsers.rst import roles
 
-from mpifibrebundles.sources.models import Source
+from onpub.sources.models import Source
 
 
 def source_role(name, rawtext, text, lineno, inliner, options={}, content=[]):

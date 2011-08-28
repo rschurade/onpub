@@ -4,7 +4,7 @@ from django.template.defaultfilters import slugify
 from docutils import nodes
 from docutils.parsers.rst import roles
 
-from mpifibrebundles.glossary.models import Term
+from onpub.glossary.models import Term
 
 
 def glossary_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
