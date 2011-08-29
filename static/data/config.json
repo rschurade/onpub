@@ -1,5 +1,5 @@
 {
     "backgroundColor": [0.99,0.99,0.98,1],
     "debug": true,
-    "controlElements": ["lhemi", "rhemi", "head", "offset"]
+    "controlElements": ["lhemi", "rhemi", "head", "offset", "control_tex"]
 }

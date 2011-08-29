@@ -699,19 +699,19 @@ var Viewer = (function()
 	{
 		if ( colorTextures )
 		{
-			if ( textures["fa_rg"][orient+pos] )
+			if ( textures["fa_rgb"][orient+pos] )
 			{
-				return textures["fa_rg"][orient+pos];
+				return textures["fa_rgb"][orient+pos];
 			}
 			else
 			{
-				textures["fa_rg"][orient+pos] = gl.createTexture();
-				textures["fa_rg"][orient+pos].image = new Image();
-				textures["fa_rg"][orient+pos].image.onload = function () 
+				textures["fa_rgb"][orient+pos] = gl.createTexture();
+				textures["fa_rgb"][orient+pos].image = new Image();
+				textures["fa_rgb"][orient+pos].image.onload = function () 
 				{
-					handleLoadedTexture(textures["fa_rg"][orient+pos])
+					handleLoadedTexture(textures["fa_rgb"][orient+pos])
 				}
-				textures["fa_rg"][orient+pos].image.src = settings.STATIC_URL + "textures/fa_rgb/" + orient + "_" + pos + ".png";
+				textures["fa_rgb"][orient+pos].image.src = settings.STATIC_URL + "textures/fa_rgb/" + orient + "_" + pos + ".png";
 			}
 		}
 		else
@@ -1311,18 +1311,28 @@ var Viewer = (function()
 	* public functions, getters and setters
 	*
 	/****************************************************************************************************/
-	function toggleElement(id) {
+	function toggleElement(id) 
+	{
 	    console.log('toggle ' + id ); 
         if (!(id in elements)) {
             console.warn('Element "' + id + '" is unknown.');
             return false;
         }
-		elements[id].display = !elements[id].display;
-        $(Viewer).trigger('elementDisplayChange', {'id': id, 'active': elements[id].display});
-		needsRedraw = true;
+        if ( elements[id].type == "control" )
+        {
+        	colorTextures = !colorTextures;
+    		needsRedraw = true;
+        }
+        else
+        {
+			elements[id].display = !elements[id].display;
+	        $(Viewer).trigger('elementDisplayChange', {'id': id, 'active': elements[id].display});
+			needsRedraw = true;
+        }
     }
     
-	function showElement(id) {
+	function showElement(id) 
+	{
 	    console.log('show ' + id ); 
         if (!(id in elements)) {
             console.warn('Element "' + id + '" is unknown.');
@@ -1333,7 +1343,8 @@ var Viewer = (function()
 		needsRedraw = true;
     }
 	
-	function hideElement(id) {
+	function hideElement(id) 
+	{
         if (!(id in elements)) {
             console.warn('Element "' + id + '" is unknown.');
             return false;
@@ -1343,7 +1354,8 @@ var Viewer = (function()
 		needsRedraw = true;
     }
     
-    function toggleActivation(id) {
+    function toggleActivation(id) 
+    {
         if (!(id in activations)) {
             console.warn('Activation "' + id + '" is unknown.');
             return false;
@@ -1353,7 +1365,8 @@ var Viewer = (function()
 		needsRedraw = true;
     }
     
-    function showActivation(id) {
+    function showActivation(id) 
+    {
         if (!(id in activations)) {
             console.warn('Activation "' + id + '" is unknown.');
             return false;
@@ -1363,7 +1376,8 @@ var Viewer = (function()
 		needsRedraw = true;
     }
     
-    function hideActivation(id) {
+    function hideActivation(id) 
+    {
         if (!(id in activations)) {
             console.warn('Activation "' + id + '" is unknown.');
             return false;

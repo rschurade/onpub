@@ -1,5 +1,5 @@
 [
-    {
+	{
         "id": "lhemi",
         "name": "Left hemisphere",
         "type": "mesh",
@@ -332,5 +332,14 @@
 		"display": false,
 		"cutFS": false,
 		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
-    }  
+    },
+    {
+        "id": "control_tex",
+        "name": "Switch between T1 and FA RGB",
+        "type": "control",
+        "url": "data/mesh_lhemi.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false
+    }
 ]
