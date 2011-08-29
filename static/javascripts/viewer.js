@@ -19,6 +19,9 @@ var Viewer = (function()
 	textures["gabi2a"] = {};
 	textures["gabi2b"] = {};
 	textures["michi"] = {};
+	textures["fig10"] = {};
+	textures["fig13p"] = {};
+	textures["fig13a"] = {};
 		
 	var preloadTextures; // stores the preload textures interval for clearinterval()
 	var preloadCounterAxial = 1; // 

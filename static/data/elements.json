@@ -37,6 +37,33 @@
 		"cutFS": false
     },
     {
+        "id": "lhemi1",
+        "name": "Left hemisphere Red BA44 Blue BA45",
+        "type": "mesh",
+        "url": "data/mesh_lhemi_ba44_ba45.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false
+    },
+    {
+        "id": "lhemi2",
+        "name": "Left hemisphere Red BA44 Blue BA45 Green STG",
+        "type": "mesh",
+        "url": "data/mesh_lhemi_ba44_ba45_stg.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false
+    },
+    {
+        "id": "lhemi3",
+        "name": "Left hemisphere Red BA44 Blue BA45 Green STG Yellow BA6",
+        "type": "mesh",
+        "url": "data/mesh_lhemi_ba44_ba45_stg_ba6.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false
+    },
+    {
         "id": "fib1",
         "name": "ac left",
         "type": "fibre",
@@ -266,31 +293,44 @@
 		"cutFS": false,
 		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
-    {
-        "id": "lhemi1",
-        "name": "Left hemisphere Red BA44 Blue BA45",
-        "type": "mesh",
-        "url": "data/mesh_lhemi_ba44_ba45.json",
+	{
+        "id": "fib24",
+        "name": "ac-06",
+        "type": "fibre",
+        "url": "data/fib_ac06.json",
 		"transparency": 1.0,
 		"display": false,
-		"cutFS": false
+		"cutFS": false,
+		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
-    {
-        "id": "lhemi2",
-        "name": "Left hemisphere Red BA44 Blue BA45 Green STG",
-        "type": "mesh",
-        "url": "data/mesh_lhemi_ba44_ba45_stg.json",
+	{
+        "id": "fib25",
+        "name": "ac-44",
+        "type": "fibre",
+        "url": "data/fib_ac44.json",
 		"transparency": 1.0,
 		"display": false,
-		"cutFS": false
+		"cutFS": false,
+		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
-    {
-        "id": "lhemi3",
-        "name": "Left hemisphere Red BA44 Blue BA45 Green STG Yellow BA6",
-        "type": "mesh",
-        "url": "data/mesh_lhemi_ba44_ba45_stg_ba6.json",
+	{
+        "id": "fib26",
+        "name": "roi_patients_ant_CC",
+        "type": "fibre",
+        "url": "data/fib_roi_patients_ant_CC.json",
 		"transparency": 1.0,
 		"display": false,
-		"cutFS": false
+		"cutFS": false,
+		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+    },
+	{
+        "id": "fib27",
+        "name": "roi_patients_post_CC",
+        "type": "fibre",
+        "url": "data/fib_roi_patients_post_CC.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
     }  
 ]
