@@ -71,7 +71,7 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+		"color": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
 	{
         "id": "fib25",
@@ -81,7 +81,7 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+		"color": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
 	{
         "id": "fib26",
@@ -91,7 +91,7 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+		"color": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
 	{
         "id": "fib27",
@@ -101,7 +101,7 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+		"color": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
     {
         "id": "fib1",
@@ -111,7 +111,7 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+		"color": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
     {
         "id": "fib2",
@@ -121,7 +121,7 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+		"color": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
     {
         "id": "fib3",
@@ -131,7 +131,7 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+		"color": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
 	{
         "id": "fib4",
@@ -141,7 +141,7 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+		"color": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
 	{
         "id": "fib5",
@@ -151,7 +151,7 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+		"color": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
 	{
         "id": "fib6",
@@ -161,7 +161,7 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+		"color": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
 	{
         "id": "fib7",
@@ -171,7 +171,7 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+		"color": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
 	{
         "id": "fib8",
@@ -181,7 +181,7 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+		"color": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
 	{
         "id": "fib9",
@@ -191,7 +191,7 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+		"color": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
 	{
         "id": "fib10",
@@ -201,7 +201,7 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+		"color": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
 	{
         "id": "fib11",
@@ -211,7 +211,7 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+		"color": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
 	{
         "id": "fib12",
@@ -221,7 +221,7 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+		"color": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
 	{
         "id": "fib13",
@@ -231,7 +231,7 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+		"color": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
 	{
         "id": "fib14",
@@ -241,7 +241,7 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+		"color": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
 	{
         "id": "fib15",
@@ -251,7 +251,7 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+		"color": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
 	{
         "id": "fib16",
@@ -261,7 +261,7 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+		"color": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
 	{
         "id": "fib17",
@@ -271,7 +271,7 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+		"color": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
 	{
         "id": "fib18",
@@ -281,7 +281,7 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+		"color": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
 	{
         "id": "fib19",
@@ -291,7 +291,7 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+		"color": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
 	{
         "id": "fib20",
@@ -301,7 +301,7 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+		"color": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
 	{
         "id": "fib21",
@@ -311,7 +311,7 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+		"color": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
 	{
         "id": "fib22",
@@ -321,7 +321,7 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+		"color": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
 	{
         "id": "fib23",
@@ -331,13 +331,22 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"colorOverride": {"r": 1.0, "g": 0.2, "b": 0.2}
+		"color": {"r": 1.0, "g": 0.2, "b": 0.2}
     },
     {
         "id": "control_tex",
         "name": "T1 <-> FA RGB",
         "type": "control",
-        "url": "data/mesh_lhemi.json",
+        "url": "data/dummy.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false
+    },
+    {
+        "id": "control_fibreColor",
+        "name": "fibre color mode",
+        "type": "control",
+        "url": "data/dummy.json",
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false

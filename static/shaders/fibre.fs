@@ -8,6 +8,9 @@ varying vec4 vPosition;
 uniform bool uIsHighlighted;
 uniform bool uSomethingHighlighted;
 
+uniform vec3 uFibreColor;
+uniform bool uFibreColorMode;
+
 varying vec3 tangentR3; // Tangent vector in world space
 varying float s_param; // s parameter of texture [-1..1]
 varying float tangent_dot_view;
@@ -15,7 +18,15 @@ varying float tangent_dot_view;
 void main(void) 
 {
 	vec3 color;
-	color = abs(normalize(tangentR3));
+	
+	if ( uFibreColorMode )
+	{
+		color = abs(normalize(tangentR3));
+	}
+	else
+	{
+		color = uFibreColor;
+	}
 
 	if ( uSomethingHighlighted && !uIsHighlighted )
 	{

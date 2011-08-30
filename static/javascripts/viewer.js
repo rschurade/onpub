@@ -68,6 +68,7 @@ var Viewer = (function()
 	var sagittal = 0;
 	
 	var colorTextures = false;
+	var localFibreColor = true;
 	
 	var needsRedraw = false; // flag indicating the scene needs redrawing, only drawing the scene 
 							 // when something changed to reduces cpu usage
@@ -238,6 +239,8 @@ var Viewer = (function()
 					elements[el.id].tubeVertices = tubeVertices;
 					elements[el.id].tubeTexCoords = tubeTexCoords;
 					calcTubeNormals(elements[el.id]);
+					
+					elements[el.id].color = el.color;
 				}
 				
 				$(Viewer).trigger('loadElementComplete', {'id': el.id});
@@ -653,6 +656,8 @@ var Viewer = (function()
 		shaderPrograms[name].isHighlightedUniform 				= gl.getUniformLocation(shaderPrograms[name], "uIsHighlighted");
 		shaderPrograms[name].somethingHighlightedUniform		= gl.getUniformLocation(shaderPrograms[name], "uSomethingHighlighted");
 		shaderPrograms[name].zoomUniform						= gl.getUniformLocation(shaderPrograms[name], "uZoom");
+		shaderPrograms[name].fibreColorUniform					= gl.getUniformLocation(shaderPrograms[name], "uFibreColor");
+		shaderPrograms[name].fibreColorModeUniform				= gl.getUniformLocation(shaderPrograms[name], "uFibreColorMode");
     }
 	
 	function setMeshUniforms()
@@ -684,9 +689,10 @@ var Viewer = (function()
         gl.uniform3f( shaderPrograms['fibre'].ambientColorUniform, 0.4, 0.4, 0.4 );
     	gl.uniform3f( shaderPrograms['fibre'].pointLightingLocationUniform, lightPos[0], lightPos[1], lightPos[2] );
         gl.uniform3f( shaderPrograms['fibre'].pointLightingDiffuseColorUniform, 0.6, 0.6, 0.6 );
-		gl.uniform1f( shaderPrograms['fibre'].somethingHighlightedUniform, somethingHighlighted );
+		gl.uniform1i( shaderPrograms['fibre'].somethingHighlightedUniform, somethingHighlighted );
 		gl.uniform1f( shaderPrograms['fibre'].zoomUniform, zoom );
 		
+		gl.uniform1i( shaderPrograms['fibre'].fibreColorModeUniform, localFibreColor );
 	}
     
 	/****************************************************************************************************
@@ -932,6 +938,9 @@ var Viewer = (function()
 		//gl.bindBuffer(gl.ARRAY_BUFFER, elem.vertexColorBuffer);
 		//gl.bufferData(gl.ARRAY_BUFFER, elem.vertexColorBuffer.data, gl.STATIC_DRAW);
 		//gl.vertexAttribPointer(shaderPrograms['fibre'].vertexColorAttribute, elem.vertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
+		
+		gl.uniform3f(shaderPrograms['fibre'].fibreColorUniform, elem.color.r, elem.color.g, elem.color.b );
+		
 		lineStart = 0;
 		for (var i = 0; i < elem.indices.length; ++i) 
 		{
@@ -1320,15 +1329,21 @@ var Viewer = (function()
         }
         if ( elements[id].type == "control" )
         {
-        	colorTextures = !colorTextures;
-    		needsRedraw = true;
+        	if ( id == "control_tex" )
+        	{
+	        	colorTextures = !colorTextures;
+        	}
+        	if ( id == "control_fibreColor" )
+        	{
+	        	localFibreColor = !localFibreColor;
+        	}
         }
         else
         {
 			elements[id].display = !elements[id].display;
 	        $(Viewer).trigger('elementDisplayChange', {'id': id, 'active': elements[id].display});
-			needsRedraw = true;
-        }
+		}
+        needsRedraw = true;
     }
     
 	function showElement(id) 
