@@ -204,13 +204,16 @@
 		"cameraPosition": [1.57, -1.57, 0.0],
 		"cameraTranslation": [0, 0],
 		"cameraZoom": 1.0,
-		"elementsAvailable": ["head", "lhemi", "rhemi", "offset"],
-		"elementsActive": ["offset"],
+		"elementsAvailable": ["head", "lhemi", "rhemi", "offset", 
+							  "fib1",  "fib2",  "fib3",  "fib4",  "fib5",  "fib6",  "fib7",  "fib8",  "fib9",  "fib10",
+							  "fib11", "fib12", "fib13", "fib14", "fib15", "fib16", "fib17", "fib18", "fib19", "fib20",
+							  "fib21", "fib22", "fib23", "fib26", "fib27"],
+		"elementsActive": ["fib26", "fib27"],
 		"activationsAvailable": [],
 		"activationsActive": [],
 		"slices": [80, 100, 80],
 		"colorTextures": false,
-		"secondaryTexture": "none"
+		"secondaryTexture": "fig13p"
 	},
 	{
 		"id": "fig12",
