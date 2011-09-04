@@ -13,6 +13,19 @@
 		"secondaryTexture": "none"
 	},
 	{
+		"id": "title2",
+		"cameraPosition": [2.0, -2.2, 0.2],
+		"cameraTranslation": [0, 0],
+		"cameraZoom": 1.0,
+		"elementsAvailable": ["head", "lhemi", "rhemi", "offset", "fib1",  "fib2",  "fib5",  "fib6",  "fib9",  "fib10",  "fib11",  "fib12",  "fib17",  "fib18"],
+		"elementsActive": ["offset", "fib1",  "fib2",  "fib5",  "fib6",  "fib9",  "fib10",  "fib11",  "fib12",  "fib17",  "fib18"],
+		"activationsAvailable": [],
+		"activationsActive": [],
+		"slices": [80, 100, 80],
+		"colorTextures": false,
+		"secondaryTexture": "none"
+	},
+	{
 		"id": "fig1",
 		"cameraPosition": [1.57, -1.57, 0.0],
 		"cameraTranslation": [0, 0],
@@ -182,7 +195,7 @@
 		"elementsActive": [],
 		"activationsAvailable": [],
 		"activationsActive": [],
-		"slices": [80, 100, 80],
+		"slices": [31, 100, 85],
 		"colorTextures": false,
 		"secondaryTexture": "fig10"
 	},

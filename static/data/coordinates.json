@@ -425,7 +425,7 @@
 },
 { 
 	"id": "ob01", 
-	"name": "obleser 01",
+	"name": "IFG normal acoustics",
 	"coord": {"x": -47, "y": 6,"z":18},
 	"color": {"r": 0.0, "g": 0.8, "b": 1.0},
 	"size": 2.5,
@@ -433,7 +433,7 @@
 },
 { 
 	"id": "ob02", 
-	"name": "obleser 02",
+	"name": "IFG degraded acoustics",
 	"coord": {"x": -40, "y": 6,"z":24},
 	"color": {"r": 1.0, "g": 0.0, "b": 0.0},
 	"size": 2.5,
@@ -441,7 +441,7 @@
 },
 { 
 	"id": "ob03", 
-	"name": "obleser 03",
+	"name": "STS normal acoustics",
 	"coord": {"x": -51, "y": -44,"z":17},
 	"color": {"r": 0.0, "g": 0.8, "b": 1.0},
 	"size": 2.5,
@@ -449,7 +449,7 @@
 },
 { 
 	"id": "ob04", 
-	"name": "obleser 04",
+	"name": "STS degraded acoustics",
 	"coord": {"x": -60, "y": -38,"z":10},
 	"color": {"r": 1.0, "g": 0.0, "b": 0.0},
 	"size": 2.5,

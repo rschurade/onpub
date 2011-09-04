@@ -68,7 +68,7 @@ var Viewer = (function()
 	var sagittal = 0;
 	
 	var colorTextures = false;
-	var localFibreColor = true;
+	var localFibreColor = false;
 	
 	var needsRedraw = false; // flag indicating the scene needs redrawing, only drawing the scene 
 							 // when something changed to reduces cpu usage
