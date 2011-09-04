@@ -376,7 +376,7 @@
                 case 103: // g : glossary
                     $('#nav a.glossary').trigger('clickflash');
                     break;
-                case 115: // s : sources
+                case 101: // e : reference list
                     $('#nav a.sources').trigger('clickflash');
                     break;
                 case 97: // a : about
