@@ -38,16 +38,16 @@
     },
     {
         "id": "lhemi1",
-        "name": "Left hemisphere Red BA44 Blue BA45",
+        "name": "Left hemisphere",
         "type": "mesh",
         "url": "data/mesh_lhemi_ba44_ba45.json",
-		"transparency": 1.0,
+		"transparency": 0.6,
 		"display": false,
 		"cutFS": false
     },
     {
         "id": "lhemi2",
-        "name": "Left hemisphere Red BA44 Blue BA45 Green STG",
+        "name": "Left hemisphere",
         "type": "mesh",
         "url": "data/mesh_lhemi_ba44_ba45_stg.json",
 		"transparency": 1.0,
@@ -56,52 +56,12 @@
     },
     {
         "id": "lhemi3",
-        "name": "Left hemisphere Red BA44 Blue BA45 Green STG Yellow BA6",
+        "name": "Left hemisphere",
         "type": "mesh",
         "url": "data/mesh_lhemi_ba44_ba45_stg_ba6.json",
-		"transparency": 1.0,
+		"transparency": 0.6,
 		"display": false,
 		"cutFS": false
-    },
-	{
-        "id": "fib24",
-        "name": "ac-06",
-        "type": "fibre",
-        "url": "data/fib_ac06.json",
-		"transparency": 1.0,
-		"display": false,
-		"cutFS": false,
-		"color": {"r": 1.0, "g": 0.2, "b": 0.2}
-    },
-	{
-        "id": "fib25",
-        "name": "ac-44",
-        "type": "fibre",
-        "url": "data/fib_ac44.json",
-		"transparency": 1.0,
-		"display": false,
-		"cutFS": false,
-		"color": {"r": 0.2, "g": 1.0, "b": 0.2}
-    },
-	{
-        "id": "fib26",
-        "name": "roi_patients_ant_CC",
-        "type": "fibre",
-        "url": "data/fib_roi_patients_ant_CC.json",
-		"transparency": 1.0,
-		"display": false,
-		"cutFS": false,
-		"color": {"r": 0.2, "g": 0.2, "b": 1.0}
-    },
-	{
-        "id": "fib27",
-        "name": "roi_patients_post_CC",
-        "type": "fibre",
-        "url": "data/fib_roi_patients_post_CC.json",
-		"transparency": 1.0,
-		"display": false,
-		"cutFS": false,
-		"color": {"r": 1.0, "g": 0.6, "b": 0.2}
     },
     {
         "id": "fib1",
@@ -191,7 +151,7 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"color": {"r": 1.0, "g": 0.0, "b": 0.0}
+		"color": {"r": 0.0, "g": 1.0, "b": 0.0}
     },
 	{
         "id": "fib10",
@@ -205,7 +165,7 @@
     },
 	{
         "id": "fib11",
-        "name": "inferior longitudinal fascicle  left",
+        "name": "inferior longitudinal fascicle left",
         "type": "fibre",
         "url": "data/fib_ilf_left.json",
 		"transparency": 1.0,
@@ -291,7 +251,7 @@
 		"transparency": 1.0,
 		"display": false,
 		"cutFS": false,
-		"color": {"r": 0.0, "g": 0.5, "b": 0.5}
+		"color": {"r": 1.0, "g": 0.0, "b": 0.0}
     },
 	{
         "id": "fib20",
@@ -332,6 +292,46 @@
 		"display": false,
 		"cutFS": false,
 		"color": {"r": 0.4, "g": 0.4, "b": 0.8}
+    },
+	{
+        "id": "fib24",
+        "name": "ac-06",
+        "type": "fibre",
+        "url": "data/fib_ac06.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"color": {"r": 1.0, "g": 1.0, "b": 0.0}
+    },
+	{
+        "id": "fib25",
+        "name": "ac-44",
+        "type": "fibre",
+        "url": "data/fib_ac44.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"color": {"r": 0.2, "g": 0.2, "b": 1.0}
+    },
+	{
+        "id": "fib26",
+        "name": "anterior CC",
+        "type": "fibre",
+        "url": "data/fib_roi_patients_ant_CC.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"color": {"r": 0.2, "g": 0.2, "b": 1.0}
+    },
+	{
+        "id": "fib27",
+        "name": "posterior CC",
+        "type": "fibre",
+        "url": "data/fib_roi_patients_post_CC.json",
+		"transparency": 1.0,
+		"display": false,
+		"cutFS": false,
+		"color": {"r": 1.0, "g": 0.6, "b": 0.2}
     },
     {
         "id": "control_tex",

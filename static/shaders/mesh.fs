@@ -20,6 +20,9 @@ uniform vec3 uSliceLocation;
 uniform int uSector;
 uniform bool uCutFS;
 
+uniform bool uPicking;
+uniform vec3 uPickColor;
+
 void cutFrontSector()
 {
     float cx = uSliceLocation.x;
@@ -68,10 +71,10 @@ void main(void)
 	
 	if ( useLight)
 	{
-		gl_FragColor = vec4(fragmentColor.rgb * lightWeighting, fragmentColor.a * uAlpha);
+		gl_FragColor = vec4(fragmentColor.rgb * lightWeighting * uAlpha, fragmentColor.a * uAlpha);
 	}
 	else
 	{
-		gl_FragColor = vec4(fragmentColor.rgb,fragmentColor.a  * uAlpha);
+		gl_FragColor = vec4(fragmentColor.rgb * uAlpha,fragmentColor.a  * uAlpha);
 	}
 }

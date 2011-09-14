@@ -74,6 +74,7 @@ var Viewer = (function()
 							 // when something changed to reduces cpu usage
 	var somethingHighlighted = false; // global flag indicating something is highlighted, for use in shader
 	
+	
 /****************************************************************************************************
 *
 *	init and loading of all the elements
@@ -109,8 +110,9 @@ var Viewer = (function()
     		gl.clearColor(1.0, 1.0, 1.0, 1.0);
         }
         
-		
 		gl.enable(gl.DEPTH_TEST);
+		
+		//initTextureFramebuffer();
 		
 		if ('elements' in opts && opts.elements.length) 
 		{
@@ -151,6 +153,35 @@ var Viewer = (function()
         gl = canvas.getContext("experimental-webgl");
         gl.viewportWidth = $canvas.width();
         gl.viewportHeight = $canvas.height();
+    }
+    
+    var rttFramebuffer;
+    var rttTexture;
+
+    function initTextureFramebuffer() {
+        rttFramebuffer = gl.createFramebuffer();
+        gl.bindFramebuffer(gl.FRAMEBUFFER, rttFramebuffer);
+        rttFramebuffer.width = 512;
+        rttFramebuffer.height = 512;
+
+        rttTexture = gl.createTexture();
+        gl.bindTexture(gl.TEXTURE_2D, rttTexture);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_NEAREST);
+        gl.generateMipmap(gl.TEXTURE_2D);
+
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, rttFramebuffer.width, rttFramebuffer.height, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+
+        var renderbuffer = gl.createRenderbuffer();
+        gl.bindRenderbuffer(gl.RENDERBUFFER, renderbuffer);
+        gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_COMPONENT16, rttFramebuffer.width, rttFramebuffer.height);
+
+        gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, rttTexture, 0);
+        gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, renderbuffer);
+
+        gl.bindTexture(gl.TEXTURE_2D, null);
+        gl.bindRenderbuffer(gl.RENDERBUFFER, null);
+        gl.bindFramebuffer(gl.FRAMEBUFFER, null);
     }
 	
 	/****************************************************************************************************
@@ -658,6 +689,8 @@ var Viewer = (function()
 		shaderPrograms[name].zoomUniform						= gl.getUniformLocation(shaderPrograms[name], "uZoom");
 		shaderPrograms[name].fibreColorUniform					= gl.getUniformLocation(shaderPrograms[name], "uFibreColor");
 		shaderPrograms[name].fibreColorModeUniform				= gl.getUniformLocation(shaderPrograms[name], "uFibreColorMode");
+		shaderPrograms[name].pickingUniform						= gl.getUniformLocation(shaderPrograms[name], "uPicking");
+		shaderPrograms[name].pickColorUniform					= gl.getUniformLocation(shaderPrograms[name], "uPickColor");
     }
 	
 	function setMeshUniforms()
@@ -677,6 +710,9 @@ var Viewer = (function()
     	gl.uniform3f( shaderPrograms['mesh'].pointLightingLocationUniform, lightPos[0], lightPos[1], lightPos[2] );
         gl.uniform3f( shaderPrograms['mesh'].pointLightingDiffuseColorUniform, 0.6, 0.6, 0.6 );
 		gl.uniform1i( shaderPrograms['mesh'].somethingHighlightedUniform, somethingHighlighted );
+		
+		gl.uniform3f( shaderPrograms['mesh'].pickColorUniform, 0.6, 0.6, 0.6 );
+		gl.uniform1i( shaderPrograms['mesh'].pickingUniform, false );
 	}
 	
 	function setFiberUniforms()
@@ -854,28 +890,7 @@ var Viewer = (function()
 				}
 			}
 		});
-/*
-		if ( elements['lhemi'] )
-		{
-			gl.uniform1i( shaderPrograms['mesh'].isHighlightedUniform, elements['lhemi'].isHighlighted );
-			drawMesh(elements['lhemi']);
-		}
-		if ( elements['rhemi'] )
-		{
-			gl.uniform1i( shaderPrograms['mesh'].isHighlightedUniform, elements['rhemi'].isHighlighted );
-			drawMesh(elements['rhemi']);
-		}
-		if ( elements['offset'] )
-		{
-			gl.uniform1i( shaderPrograms['mesh'].isHighlightedUniform, elements['offset'].isHighlighted );
-			drawMesh(elements['offset']);
-		}
-		if ( elements['head'] )
-		{
-			gl.uniform1i( shaderPrograms['mesh'].isHighlightedUniform, elements['head'].isHighlighted );
-			drawMesh(elements['head']);
-		}
-*/
+
     }
 	
 	function drawMesh(elem)

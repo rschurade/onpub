@@ -465,34 +465,17 @@
 },
 { 
 	"id": "of01", 
-	"name": "of01",
-	"coord": {"x": -18, "y": -16,"z":1},
-	"color": {"r": 0.0, "g": 1.0, "b": 0.0},
-	"size": 3.0,
-	"display": true	
-},
-{ 
-	"id": "of02", 
-	"name": "of02",
+	"name": "Hippocampus",
 	"coord": {"x": -26, "y": -32,"z":0},
 	"color": {"r": 0.0, "g": 1.0, "b": 0.0},
 	"size": 3.0,
 	"display": true	
 },
 { 
-	"id": "of03", 
-	"name": "of03",
-	"coord": {"x": -40, "y": 8,"z":18},
+	"id": "of02", 
+	"name": "Broca's area",
+	"coord": {"x": -40, "y": -8,"z":18},
 	"color": {"r": 1.0, "g": 0.0, "b": 0.0},
 	"size": 3.0,
 	"display": true	
-},
-{ 
-	"id": "of04", 
-	"name": "of04",
-	"coord": {"x": -40, "y": -81,"z":28},
-	"color": {"r": 1.0, "g": 0.0, "b": 0.0},
-	"size": 3.0,
-	"display": true	
-}
-]
+}]
