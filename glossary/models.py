@@ -7,6 +7,9 @@ class Term(models.Model):
     active = models.BooleanField(default=True)
     slug = models.SlugField(editable=False, blank=True, unique=True)
     
+    class Meta:
+    	ordering = ('term',)
+    
     def __unicode__(self):
         return u"%s" % self.term
     
