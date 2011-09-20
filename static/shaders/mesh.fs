@@ -54,27 +54,34 @@ void main(void)
 		cutFrontSector();
 	}
 
-	vec3 lightWeighting;
-
-	vec3 lightDirection = normalize(vLightPos);
-
-	float diffuseLightWeighting = max(dot(normal, lightDirection), 0.0);
-		
-	lightWeighting = uAmbientColor + uPointLightingDiffuseColor * diffuseLightWeighting;
-
-	vec4 fragmentColor = vColor;
-	
-	if ( uSomethingHighlighted && !uIsHighlighted )
+	if ( uPicking )
 	{
-		fragmentColor = vec4( 0.4, 0.4, 0.4, vColor.a );
-	}
-	
-	if ( useLight)
-	{
-		gl_FragColor = vec4(fragmentColor.rgb * lightWeighting * uAlpha, fragmentColor.a * uAlpha);
+		gl_FragColor = vec4(uPickColor,1.0);
 	}
 	else
 	{
-		gl_FragColor = vec4(fragmentColor.rgb * uAlpha,fragmentColor.a  * uAlpha);
+		vec3 lightWeighting;
+	
+		vec3 lightDirection = normalize(vLightPos);
+	
+		float diffuseLightWeighting = max(dot(normal, lightDirection), 0.0);
+			
+		lightWeighting = uAmbientColor + uPointLightingDiffuseColor * diffuseLightWeighting;
+	
+		vec4 fragmentColor = vColor;
+		
+		if ( uSomethingHighlighted && !uIsHighlighted )
+		{
+			fragmentColor = vec4( 0.4, 0.4, 0.4, vColor.a );
+		}
+		
+		if ( useLight)
+		{
+			gl_FragColor = vec4(fragmentColor.rgb * lightWeighting * uAlpha, fragmentColor.a * uAlpha);
+		}
+		else
+		{
+			gl_FragColor = vec4(fragmentColor.rgb * uAlpha,fragmentColor.a  * uAlpha);
+		}
 	}
 }

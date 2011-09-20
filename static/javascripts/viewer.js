@@ -9,7 +9,6 @@ var Viewer = (function()
     var $container;
 	
     var elements = {}; // array of loaded triangle meshes and fiber bundles
-	var activations = {}; // array of activations
 	var scenes = {}; // array of scenes
 	
 	var textures = {};
@@ -70,6 +69,11 @@ var Viewer = (function()
 	var colorTextures = false;
 	var localFibreColor = false;
 	
+	var pickIndex = 1; // starting index for pick colors
+	var pickArray = {};
+	var pickMode = false;
+	var oldPick = "none"
+	
 	var needsRedraw = false; // flag indicating the scene needs redrawing, only drawing the scene 
 							 // when something changed to reduces cpu usage
 	var somethingHighlighted = false; // global flag indicating something is highlighted, for use in shader
@@ -112,7 +116,7 @@ var Viewer = (function()
         
 		gl.enable(gl.DEPTH_TEST);
 		
-		//initTextureFramebuffer();
+		initTextureFramebuffer();
 		
 		if ('elements' in opts && opts.elements.length) 
 		{
@@ -129,7 +133,6 @@ var Viewer = (function()
 		canvas.onmousedown = handleMouseDown;
         canvas.onmouseup = handleMouseUp;
         canvas.onmousemove = handleMouseMove;
-		//canvas.onmousewheel = handleMouseWheel;
 		canvas.addEventListener('DOMMouseScroll',handleMouseWheel,false);
 		canvas.addEventListener('mousewheel',handleMouseWheel,false);
 		
@@ -238,6 +241,7 @@ var Viewer = (function()
 					elements[el.id].colors = colors;
 				}
 				
+				elements[el.id].id = el.id;
 				elements[el.id].name = el.name;
 				elements[el.id].type = el.type;
 				elements[el.id].display = el.display;
@@ -245,7 +249,14 @@ var Viewer = (function()
 				elements[el.id].transparency = el.transparency;
 				elements[el.id].hasBuffer = false;
 				elements[el.id].isHighlighted = false;
-				
+				pickColor = createPickColor( pickIndex );
+				pickArray[pickColor.join()] = el.id;
+				pickIndex++;
+				pc = [];
+		        pc[0] = pickColor[0] / 255;
+		        pc[1] = pickColor[1] / 255;
+		        pc[2] = pickColor[2] / 255;
+				elements[el.id].pickColor = pc; 
 				
 				if ( el.type == "fibre" )
 				{
@@ -290,6 +301,15 @@ var Viewer = (function()
                 }
             });
         });
+    }
+    
+    function createPickColor( index )
+    {
+    	hash = [];
+    	hash[0] = index % 256;
+        hash[1] = ((index / 256) >> 0) % 256;
+        hash[2] = ((index / (256 * 256)) >> 0) % 256;
+        return hash;
     }
 	
 	function calcTubeNormals(elem)
@@ -354,15 +374,23 @@ var Viewer = (function()
 		$.each(activationsToLoad, function(i, ac) 
 		{
 			co = tal2pixel( ac.coord.x, ac.coord.y, ac.coord.z );
-			activations[ac.id] = createSphere( co[0], co[1], co[2], ac.size, ac.color );
-			activations[ac.id].name = ac.name
-			activations[ac.id].type = 'activation';
-			activations[ac.id].display = ac.display;
-			activations[ac.id].id = ac.id;
-			activations[ac.id].hasBuffer = false;
-			activations[ac.id].isHighlighted = false;
-			activations[ac.id].cutFS = false;
-			activations[ac.id].transparency = 1.0;
+			elements[ac.id] = createSphere( co[0], co[1], co[2], ac.size, ac.color );
+			elements[ac.id].name = ac.name
+			elements[ac.id].type = 'activation';
+			elements[ac.id].display = ac.display;
+			elements[ac.id].id = ac.id;
+			elements[ac.id].hasBuffer = false;
+			elements[ac.id].isHighlighted = false;
+			elements[ac.id].cutFS = false;
+			elements[ac.id].transparency = 1.0;
+			pickColor = createPickColor( pickIndex );
+			pickIndex++;
+			pickArray[pickColor.join()] = ac.id;
+			pc = [];
+	        pc[0] = pickColor[0] / 255;
+	        pc[1] = pickColor[1] / 255;
+	        pc[2] = pickColor[2] / 255;
+			elements[ac.id].pickColor = pc; 
 			
 		    $(Viewer).trigger('loadActivationComplete', {'id': ac.id});
 		});
@@ -560,12 +588,6 @@ var Viewer = (function()
 		{
 		    hideElement(id);
 		});
-		
-		$.each(activations, function(id, activation) 
-		{
-		    hideActivation(id);
-		});
-		
 		axial = scenes[id].slices[0];
 		coronal = scenes[id].slices[1];
 		sagittal = scenes[id].slices[2];
@@ -711,8 +733,7 @@ var Viewer = (function()
         gl.uniform3f( shaderPrograms['mesh'].pointLightingDiffuseColorUniform, 0.6, 0.6, 0.6 );
 		gl.uniform1i( shaderPrograms['mesh'].somethingHighlightedUniform, somethingHighlighted );
 		
-		gl.uniform3f( shaderPrograms['mesh'].pickColorUniform, 0.6, 0.6, 0.6 );
-		gl.uniform1i( shaderPrograms['mesh'].pickingUniform, false );
+		gl.uniform1i( shaderPrograms['mesh'].pickingUniform, pickMode );
 	}
 	
 	function setFiberUniforms()
@@ -729,6 +750,7 @@ var Viewer = (function()
 		gl.uniform1f( shaderPrograms['fibre'].zoomUniform, zoom );
 		
 		gl.uniform1i( shaderPrograms['fibre'].fibreColorModeUniform, localFibreColor );
+		gl.uniform1i( shaderPrograms['fibre'].pickingUniform, pickMode );
 	}
     
 	/****************************************************************************************************
@@ -870,9 +892,9 @@ var Viewer = (function()
 		});
 		
 		setMeshUniforms();
-		$.each(activations, function() 
+		$.each(elements, function() 
 		{
-			if ( this.display )
+			if ( this.type == 'activation' && this.display )
 			{
 				gl.uniform1i( shaderPrograms['mesh'].isHighlightedUniform, this.isHighlighted );
 				drawMesh(this);
@@ -890,7 +912,83 @@ var Viewer = (function()
 				}
 			}
 		});
+    }
+	
+	function drawPickScene() 
+	{
+		pickMode = true;
+		
+		gl.viewport(0, 0, rttFramebuffer.width, rttFramebuffer.height);
+        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
+		mat4.ortho(-100 + screenMoveX, 100 + screenMoveX, -100 - screenMoveY, 100 - screenMoveY, -500, 500, pMatrix);
+        
+        mat4.identity(mvMatrix);
+		zv = vec3.create();
+		zv[0] = zoom;
+		zv[1] = zoom;
+		zv[2] = zoom;
+		mat4.scale(mvMatrix, zv);
+		
+		lightPos[0] = 0.0;
+		lightPos[1] = 0.0;
+		lightPos[2] = -1.0;
+		
+		mat4.translate(mvMatrix, [-80, -100, -80]);
+		
+		mat4.inverse(m_thisRot);
+		mat4.multiply(m_thisRot, mvMatrix, mvMatrix);
+		mat4.inverse(m_thisRot);
+		
+		mat4.toInverseMat3(mvMatrix, normalMatrix);
+        mat3.transpose(normalMatrix);
+		
+		mat4.multiplyVec3(m_thisRot, lightPos);
+				
+		gl.disable(gl.BLEND);
+		gl.enable(gl.DEPTH_TEST);
+
+		if (!elements['head'] || !elements['head'].display )
+		{
+			drawSlices();
+		}
+
+		setFiberUniforms();
+		$.each(elements, function() 
+		{
+			if ( this.display )
+			{
+				if ( this.type == 'fibre' )
+				{
+					gl.uniform1f( shaderPrograms['fibre'].isHighlightedUniform, this.isHighlighted );
+					drawFibers(this);
+				}
+			}
+		});
+		
+		setMeshUniforms();
+		$.each(elements, function() 
+		{
+			if ( this.type == 'activation' && this.display )
+			{
+				gl.uniform1i( shaderPrograms['mesh'].isHighlightedUniform, this.isHighlighted );
+				drawMesh(this);
+			}
+		});
+
+		$.each(elements, function() 
+		{
+			if ( this.display )
+			{
+				if ( this.type == 'mesh' )
+				{
+					gl.uniform1f( shaderPrograms['mesh'].isHighlightedUniform, this.isHighlighted );
+					drawMesh(this);
+				}
+			}
+		});
+		
+		pickMode = false;
     }
 	
 	function drawMesh(elem)
@@ -914,6 +1012,7 @@ var Viewer = (function()
 		gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, elem.vertexIndexBuffer.data, gl.STATIC_DRAW);
 
 		gl.uniform1i(shaderPrograms['mesh'].cutFSUniform, elem.cutFS);
+		gl.uniform3f(shaderPrograms['mesh'].pickColorUniform, elem.pickColor[0], elem.pickColor[1], elem.pickColor[2]);
 		
 		gl.disable(gl.BLEND);
 		gl.enable(gl.DEPTH_TEST);
@@ -955,6 +1054,7 @@ var Viewer = (function()
 		//gl.vertexAttribPointer(shaderPrograms['fibre'].vertexColorAttribute, elem.vertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
 		
 		gl.uniform3f(shaderPrograms['fibre'].fibreColorUniform, elem.color.r, elem.color.g, elem.color.b );
+		gl.uniform3f(shaderPrograms['fibre'].pickColorUniform, elem.pickColor[0], elem.pickColor[1], elem.pickColor[2]);
 		
 		lineStart = 0;
 		for (var i = 0; i < elem.indices.length; ++i) 
@@ -1268,11 +1368,43 @@ var Viewer = (function()
 
     function handleMouseMove(event) 
 	{
+    	e = fixupMouse( event );
+    	
+    	gl.bindFramebuffer(gl.FRAMEBUFFER, rttFramebuffer);
+        drawPickScene();
+        
+        pickX = ( rttFramebuffer.width / gl.viewportWidth ) * event.offsetX;
+        pickY = ( rttFramebuffer.height / gl.viewportHeight ) * ( gl.viewportHeight - event.offsetY );
+        
+        pixel = new Uint8Array(1 * 1 * 4);
+        gl.readPixels(pickX, pickY, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixel);
+        var pickColor = [pixel[0], pixel[1], pixel[2]].join();
+        
+        if ( pickArray[pickColor] )
+        {
+        	if ( oldPick != elements[pickArray[pickColor]].id )
+        	{
+        		$(Viewer).trigger('pickChanged', {'id': elements[pickArray[pickColor]].id, 'name': elements[pickArray[pickColor]].name});
+        		oldPick = elements[pickArray[pickColor]].id;
+        	}
+        }
+        else
+        {
+        	if ( oldPick != "none" )
+        	{
+        		$(Viewer).trigger('pickChanged', {'id': "none", 'name': "none"});
+        		oldPick = "none";
+        	}
+        }
+        
+    	
+        gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+        
 		if (!leftMouseDown && !middleMouseDown ) 
 		{
 			return;
         }
-		e = fixupMouse( event );
+		
 		if (leftMouseDown)
 		{
 			if ( event.offsetX )
@@ -1386,33 +1518,33 @@ var Viewer = (function()
     
     function toggleActivation(id) 
     {
-        if (!(id in activations)) {
+        if (!(id in elements)) {
             console.warn('Activation "' + id + '" is unknown.');
             return false;
         }
-        activations[id].display = !activations[id].display;
-        $(Viewer).trigger('activationDisplayChange', {'id': id, 'active': activations[id].display});
+        elements[id].display = !elements[id].display;
+        $(Viewer).trigger('activationDisplayChange', {'id': id, 'active': elements[id].display});
 		needsRedraw = true;
     }
     
     function showActivation(id) 
     {
-        if (!(id in activations)) {
+        if (!(id in elements)) {
             console.warn('Activation "' + id + '" is unknown.');
             return false;
         }
-        activations[id].display = true;
+        elements[id].display = true;
         $(Viewer).trigger('activationDisplayChange', {'id': id, 'active': true});
 		needsRedraw = true;
     }
     
     function hideActivation(id) 
     {
-        if (!(id in activations)) {
+        if (!(id in elements)) {
             console.warn('Activation "' + id + '" is unknown.');
             return false;
         }
-        activations[id].display = false;
+        elements[id].display = false;
         $(Viewer).trigger('activationDisplayChange', {'id': id, 'active': false});
 		needsRedraw = true;
     }
@@ -1429,17 +1561,8 @@ var Viewer = (function()
 		{
 			this.isHighlighted = false;
 		});
-
-		$.each(activations, function() 
-		{
-			this.isHighlighted = false;
-		});
 		if ( elements[id] )
 			elements[id].isHighlighted = true;
-		if ( activations[id] )
-		{
-			activations[id].isHighlighted = true;
-		}
 		somethingHighlighted = true;
 		needsRedraw = true;
 	}
@@ -1447,11 +1570,6 @@ var Viewer = (function()
 	function unHighlight() 
 	{
 		$.each(elements, function() 
-		{
-			this.isHighlighted = false;
-		});
-
-		$.each(activations, function() 
 		{
 			this.isHighlighted = false;
 		});
