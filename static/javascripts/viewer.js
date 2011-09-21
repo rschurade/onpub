@@ -1401,55 +1401,56 @@ var Viewer = (function()
 	{
     	e = fixupMouse( event );
     	
-    	gl.bindFramebuffer(gl.FRAMEBUFFER, rttFramebuffer);
-        drawPickScene();
-        
-        pickX = ( rttFramebuffer.width / gl.viewportWidth ) * event.offsetX;
-        pickY = ( rttFramebuffer.height / gl.viewportHeight ) * ( gl.viewportHeight - event.offsetY );
-        
-        if ( event.offsetX )
+    	if (!leftMouseDown && !middleMouseDown ) 
 		{
-			// chrome case, should work
-        	pickX = ( rttFramebuffer.width / gl.viewportWidth ) * event.offsetX;
-            pickY = ( rttFramebuffer.height / gl.viewportHeight ) * ( gl.viewportHeight - event.offsetY );
-		}
-		else
-		{
-			pickX = ( rttFramebuffer.width / gl.viewportWidth ) * ( e.x - findPosX($id('viewer') ) );
-	        pickY = ( rttFramebuffer.height / gl.viewportHeight ) * ( gl.viewportHeight -  (e.y - findPosY($id('viewer')) ) );
-		}
+	    	gl.bindFramebuffer(gl.FRAMEBUFFER, rttFramebuffer);
+	        drawPickScene();
+	        
+	        pickX = ( rttFramebuffer.width / gl.viewportWidth ) * event.offsetX;
+	        pickY = ( rttFramebuffer.height / gl.viewportHeight ) * ( gl.viewportHeight - event.offsetY );
+	        
+	        if ( event.offsetX )
+			{
+				// chrome case, should work
+	        	pickX = ( rttFramebuffer.width / gl.viewportWidth ) * event.offsetX;
+	            pickY = ( rttFramebuffer.height / gl.viewportHeight ) * ( gl.viewportHeight - event.offsetY );
+			}
+			else
+			{
+				pickX = ( rttFramebuffer.width / gl.viewportWidth ) * ( e.x - findPosX($id('viewer') ) );
+		        pickY = ( rttFramebuffer.height / gl.viewportHeight ) * ( gl.viewportHeight -  (e.y - findPosY($id('viewer')) ) );
+			}
+	        
+	        
+	        pixel = new Uint8Array(1 * 1 * 4);
+	        gl.readPixels(pickX, pickY, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixel);
+	        var pickColor = [pixel[0], pixel[1], pixel[2]].join();
+	        
+	        if ( pickArray[pickColor] )
+	        {
+	        	if ( oldPick != elements[pickArray[pickColor]].id )
+	        	{
+	        		console.log(elements[pickArray[pickColor]].name);
+	        		$(Viewer).trigger('pickChanged', {'id': elements[pickArray[pickColor]].id, 'name': elements[pickArray[pickColor]].name, 'event': e});
+	        		oldPick = elements[pickArray[pickColor]].id;
+	        	}
+	        }
+	        else
+	        {
+	        	if ( oldPick != "none" )
+	        	{
+	        		$(Viewer).trigger('pickChanged', {'id': "none", 'name': "none"});
+	        		oldPick = "none";
+	        	}
+	        }
+	        gl.bindFramebuffer(gl.FRAMEBUFFER, null);
         
-        
-        pixel = new Uint8Array(1 * 1 * 4);
-        gl.readPixels(pickX, pickY, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixel);
-        var pickColor = [pixel[0], pixel[1], pixel[2]].join();
-        
-        if ( pickArray[pickColor] )
-        {
-        	if ( oldPick != elements[pickArray[pickColor]].id )
-        	{
-        		console.log(elements[pickArray[pickColor]].name);
-        		$(Viewer).trigger('pickChanged', {'id': elements[pickArray[pickColor]].id, 'name': elements[pickArray[pickColor]].name, 'event': e});
-        		oldPick = elements[pickArray[pickColor]].id;
-        	}
-        }
-        else
-        {
-        	if ( oldPick != "none" )
-        	{
-        		$(Viewer).trigger('pickChanged', {'id': "none", 'name': "none"});
-        		oldPick = "none";
-        	}
-        }
-        
-    	
-        gl.bindFramebuffer(gl.FRAMEBUFFER, null);
-        
-		if (!leftMouseDown && !middleMouseDown ) 
-		{
 			return;
         }
 		
+    	$(Viewer).trigger('pickChanged', {'id': "none", 'name': "none"});
+		oldPick = "none";
+    	
 		if (leftMouseDown)
 		{
 			if ( event.offsetX )
