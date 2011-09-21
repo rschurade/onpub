@@ -1310,7 +1310,38 @@ var Viewer = (function()
 		return e;
 	}
 	
-	
+	function findPosX(obj)
+    {
+      var curleft = 0;
+      if(obj.offsetParent)
+          while(1) 
+          {
+            curleft += obj.offsetLeft;
+            if(!obj.offsetParent)
+              break;
+            obj = obj.offsetParent;
+          }
+      else if(obj.x)
+          curleft += obj.x;
+      return curleft;
+    }
+
+    function findPosY(obj)
+    {
+      var curtop = 0;
+      if(obj.offsetParent)
+          while(1)
+          {
+            curtop += obj.offsetTop;
+            if(!obj.offsetParent)
+              break;
+            obj = obj.offsetParent;
+          }
+      else if(obj.y)
+          curtop += obj.y;
+      return curtop;
+    }
+    
 	function handleMouseDown(event) 
 	{
 		e = fixupMouse( event );
@@ -1326,7 +1357,7 @@ var Viewer = (function()
 			}
 			else
 			{
-				Arcball.click(e.x - vd.offsetLeft, e.y - vd.offsetTop);
+				Arcball.click(e.x - findPosX($id('viewer')), e.y - findPosY($id('viewer')));
 			}
 		}
 		else if (e.which == 2)
@@ -1342,8 +1373,8 @@ var Viewer = (function()
 			}
 			else
 			{
-				middleMouseClickX = e.x - vd.offsetLeft;
-				middleMouseClickY = e.y - vd.offsetTop;
+				middleMouseClickX = e.x - findPosX($id('viewer'));
+				middleMouseClickY = e.y - findPosY($id('viewer'));
 			}
 		}
 		event.preventDefault();
@@ -1376,6 +1407,19 @@ var Viewer = (function()
         pickX = ( rttFramebuffer.width / gl.viewportWidth ) * event.offsetX;
         pickY = ( rttFramebuffer.height / gl.viewportHeight ) * ( gl.viewportHeight - event.offsetY );
         
+        if ( event.offsetX )
+		{
+			// chrome case, should work
+        	pickX = ( rttFramebuffer.width / gl.viewportWidth ) * event.offsetX;
+            pickY = ( rttFramebuffer.height / gl.viewportHeight ) * ( gl.viewportHeight - event.offsetY );
+		}
+		else
+		{
+			pickX = ( rttFramebuffer.width / gl.viewportWidth ) * ( e.x - findPosX($id('viewer') ) );
+	        pickY = ( rttFramebuffer.height / gl.viewportHeight ) * ( gl.viewportHeight -  (e.y - findPosY($id('viewer')) ) );
+		}
+        
+        
         pixel = new Uint8Array(1 * 1 * 4);
         gl.readPixels(pickX, pickY, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixel);
         var pickColor = [pixel[0], pixel[1], pixel[2]].join();
@@ -1384,7 +1428,8 @@ var Viewer = (function()
         {
         	if ( oldPick != elements[pickArray[pickColor]].id )
         	{
-        		$(Viewer).trigger('pickChanged', {'id': elements[pickArray[pickColor]].id, 'name': elements[pickArray[pickColor]].name});
+        		console.log(elements[pickArray[pickColor]].name);
+        		$(Viewer).trigger('pickChanged', {'id': elements[pickArray[pickColor]].id, 'name': elements[pickArray[pickColor]].name, 'event': e});
         		oldPick = elements[pickArray[pickColor]].id;
         	}
         }
@@ -1414,7 +1459,7 @@ var Viewer = (function()
 			}
 			else
 			{
-				Arcball.drag(e.x - vd.offsetLeft, e.y - vd.offsetTop);
+				Arcball.drag(e.x - findPosX($id('viewer')), e.y - findPosY($id('viewer')));
 			}
 			mat4.set(Arcball.get(), m_thisRot);
 			mat4.multiply(m_lastRot, m_thisRot, m_thisRot);
@@ -1429,8 +1474,8 @@ var Viewer = (function()
 			}
 			else
 			{
-				screenMoveX = middleMouseClickX - (e.x - vd.offsetLeft) + screenMoveXold;
-				screenMoveY = middleMouseClickY - (e.y - vd.offsetTop ) + screenMoveYold;
+				screenMoveX = middleMouseClickX - (e.x - findPosX($id('viewer'))) + screenMoveXold;
+				screenMoveY = middleMouseClickY - (e.y - findPosY($id('viewer')) ) + screenMoveYold;
 			}
 		}
 		event.preventDefault();

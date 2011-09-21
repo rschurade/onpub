@@ -228,16 +228,22 @@
         
         var $viewerTooltip = $('<div id="tooltip"></div>');
         $('body').append($viewerTooltip);
+        /*
         $viewerTooltip.css({
             'left': findPosX(document.getElementById('viewer')),
             'top': findPosY(document.getElementById('viewer'))
         });
-        
+        */
         Viewer.bind('pickChanged', function(evt, data) {
         	if ( data.id != "none" )
         	{
-	            console.log(data.id + " " + data.name);
+        		if (config.debug) console.log(data.id + " " + data.name);
 	            $viewerTooltip.text(data.name);
+	            $viewerTooltip.css({
+	                'left': data.event.x + 10,
+	                'top': data.event.y  - 10
+	            });
+	            
 	            $viewerTooltip.show();
         	}
         	else
@@ -245,38 +251,6 @@
         		$viewerTooltip.hide();
         	}
         });
-        
-        function findPosX(obj)
-        {
-          var curleft = 0;
-          if(obj.offsetParent)
-              while(1) 
-              {
-                curleft += obj.offsetLeft;
-                if(!obj.offsetParent)
-                  break;
-                obj = obj.offsetParent;
-              }
-          else if(obj.x)
-              curleft += obj.x;
-          return curleft;
-        }
-
-        function findPosY(obj)
-        {
-          var curtop = 0;
-          if(obj.offsetParent)
-              while(1)
-              {
-                curtop += obj.offsetTop;
-                if(!obj.offsetParent)
-                  break;
-                obj = obj.offsetParent;
-              }
-          else if(obj.y)
-              curtop += obj.y;
-          return curtop;
-        }
         
         // INIT VIEWER
         window.setTimeout(function() {
