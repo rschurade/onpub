@@ -23,6 +23,8 @@ uniform bool uCutFS;
 uniform bool uPicking;
 uniform vec3 uPickColor;
 
+uniform bool uCutWhite;
+
 void cutFrontSector()
 {
     float cx = uSliceLocation.x;
@@ -53,6 +55,24 @@ void main(void)
 	{
 		cutFrontSector();
 	}
+	
+	vec4 fragmentColor = vColor;
+	fragmentColor.a = uAlpha;
+	
+	if ( fragmentColor.a < 1.0 )
+	{
+		float dir = dot(normal, normalize(vLightPos));
+		if ( dir < 0.0 )
+		{
+			discard;
+		}
+	}
+	
+	
+	if ( uCutWhite && ( ( vColor.r + vColor.g + vColor.b ) != 3.0 ) )
+	{
+		fragmentColor.a = 1.0;
+	}
 
 	if ( uPicking )
 	{
@@ -68,20 +88,12 @@ void main(void)
 			
 		lightWeighting = uAmbientColor + uPointLightingDiffuseColor * diffuseLightWeighting;
 	
-		vec4 fragmentColor = vColor;
-		
 		if ( uSomethingHighlighted && !uIsHighlighted )
 		{
-			fragmentColor = vec4( 0.4, 0.4, 0.4, vColor.a );
+			fragmentColor = vec4( 0.4, 0.4, 0.4, fragmentColor.a );
 		}
 		
-		if ( useLight)
-		{
-			gl_FragColor = vec4(fragmentColor.rgb * lightWeighting * uAlpha, fragmentColor.a * uAlpha);
-		}
-		else
-		{
-			gl_FragColor = vec4(fragmentColor.rgb * uAlpha,fragmentColor.a  * uAlpha);
-		}
+		gl_FragColor = vec4(fragmentColor.rgb * lightWeighting * fragmentColor.a, fragmentColor.a);
+
 	}
 }

@@ -72,7 +72,8 @@ var Viewer = (function()
 	var pickIndex = 1; // starting index for pick colors
 	var pickArray = {};
 	var pickMode = false;
-	var oldPick = "none"
+	var oldPick = "none";
+	var showTooltips = true;
 	
 	var needsRedraw = false; // flag indicating the scene needs redrawing, only drawing the scene 
 							 // when something changed to reduces cpu usage
@@ -202,7 +203,7 @@ var Viewer = (function()
             $(Viewer).trigger('loadElementStart', {'id': el.id});
             
             // … die JSON-Daten von der URL laden, …
-            $.getJSON(settings.STATIC_URL + el.url, function(data) 
+            $.getSyncJSON(settings.STATIC_URL + el.url, function(data) 
 			{
                 // … in der oben definierten Eigenschaft »elements« speichern, …
                 elements[el.id] = data;
@@ -246,6 +247,7 @@ var Viewer = (function()
 				elements[el.id].type = el.type;
 				elements[el.id].display = el.display;
 				elements[el.id].cutFS = el.cutFS;
+				elements[el.id].cutWhite = el.cutWhite;
 				elements[el.id].transparency = el.transparency;
 				elements[el.id].hasBuffer = false;
 				elements[el.id].isHighlighted = false;
@@ -713,6 +715,7 @@ var Viewer = (function()
 		shaderPrograms[name].fibreColorModeUniform				= gl.getUniformLocation(shaderPrograms[name], "uFibreColorMode");
 		shaderPrograms[name].pickingUniform						= gl.getUniformLocation(shaderPrograms[name], "uPicking");
 		shaderPrograms[name].pickColorUniform					= gl.getUniformLocation(shaderPrograms[name], "uPickColor");
+		shaderPrograms[name].cutWhiteUniform					= gl.getUniformLocation(shaderPrograms[name], "uCutWhite");
     }
 	
 	function setMeshUniforms()
@@ -1013,6 +1016,7 @@ var Viewer = (function()
 
 		gl.uniform1i(shaderPrograms['mesh'].cutFSUniform, elem.cutFS);
 		gl.uniform3f(shaderPrograms['mesh'].pickColorUniform, elem.pickColor[0], elem.pickColor[1], elem.pickColor[2]);
+		gl.uniform1i(shaderPrograms['mesh'].cutWhiteUniform, elem.cutWhite);
 		
 		gl.disable(gl.BLEND);
 		gl.enable(gl.DEPTH_TEST);
@@ -1401,7 +1405,7 @@ var Viewer = (function()
 	{
     	e = fixupMouse( event );
     	
-    	if (!leftMouseDown && !middleMouseDown ) 
+    	if ( showTooltips && !leftMouseDown && !middleMouseDown ) 
 		{
 	    	gl.bindFramebuffer(gl.FRAMEBUFFER, rttFramebuffer);
 	        drawPickScene();
@@ -1530,12 +1534,15 @@ var Viewer = (function()
         	{
 	        	localFibreColor = !localFibreColor;
         	}
+        	if ( id == "control_tooltip" )
+        	{
+	        	showTooltips = !showTooltips;
+        	}
         }
-        else
-        {
-			elements[id].display = !elements[id].display;
-	        $(Viewer).trigger('elementDisplayChange', {'id': id, 'active': elements[id].display});
-		}
+
+
+		elements[id].display = !elements[id].display;
+        $(Viewer).trigger('elementDisplayChange', {'id': id, 'active': elements[id].display});
         needsRedraw = true;
     }
     

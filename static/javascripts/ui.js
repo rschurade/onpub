@@ -228,12 +228,7 @@
         
         var $viewerTooltip = $('<div id="tooltip"></div>');
         $('body').append($viewerTooltip);
-        /*
-        $viewerTooltip.css({
-            'left': findPosX(document.getElementById('viewer')),
-            'top': findPosY(document.getElementById('viewer'))
-        });
-        */
+        
         Viewer.bind('pickChanged', function(evt, data) {
         	if ( data.id != "none" )
         	{

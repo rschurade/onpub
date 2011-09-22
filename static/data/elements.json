@@ -4,28 +4,20 @@
         "name": "Left hemisphere",
         "type": "mesh",
         "url": "data/mesh_lhemi.json",
-		"transparency": 1.0,
+		"transparency": 0.6,
 		"display": false,
-		"cutFS": false
+		"cutFS": false,
+		"cutWhite": false
     },
     {
         "id": "rhemi",
         "name": "Right hemisphere",
         "type": "mesh",
         "url": "data/mesh_rhemi.json",
-		"transparency": 1.0,
-		"display": false,
-		"cutFS": false
-    },
-    {
-        "id": "head",
-        "name": "Head",
-        "type": "mesh",
-        "url": "data/mesh_head.json",
-		"transparency": 1.0,
+		"transparency": 0.6,
 		"display": false,
 		"cutFS": false,
-		"color": {"r": 0.89, "g": 0.77, "b": 0.64}
+		"cutWhite": false
     },
 	{
         "id": "offset",
@@ -34,16 +26,18 @@
         "url": "data/mesh_offset1.json",
 		"transparency": 0.7,
 		"display": false,
-		"cutFS": false
+		"cutFS": false,
+		"cutWhite": false
     },
     {
         "id": "lhemi1",
         "name": "Left hemisphere",
         "type": "mesh",
         "url": "data/mesh_lhemi_ba44_ba45.json",
-		"transparency": 0.6,
+		"transparency": 0.5,
 		"display": false,
-		"cutFS": false
+		"cutFS": false,
+		"cutWhite": true
     },
     {
         "id": "lhemi2",
@@ -52,16 +46,29 @@
         "url": "data/mesh_lhemi_ba44_ba45_stg.json",
 		"transparency": 1.0,
 		"display": false,
-		"cutFS": false
+		"cutFS": false,
+		"cutWhite": true
     },
     {
         "id": "lhemi3",
         "name": "Left hemisphere",
         "type": "mesh",
         "url": "data/mesh_lhemi_ba44_ba45_stg_ba6.json",
-		"transparency": 0.6,
+		"transparency": 0.5,
 		"display": false,
-		"cutFS": false
+		"cutFS": false,
+		"cutWhite": true
+    },
+    {
+        "id": "head",
+        "name": "Head",
+        "type": "mesh",
+        "url": "data/mesh_head.json",
+		"transparency": 0.4,
+		"display": false,
+		"cutFS": false,
+		"cutWhite": false,
+		"color": {"r": 0.89, "g": 0.77, "b": 0.64}
     },
     {
         "id": "fib1",
@@ -349,6 +356,15 @@
         "url": "data/dummy.json",
 		"transparency": 1.0,
 		"display": false,
+		"cutFS": false
+    },
+    {
+        "id": "control_tooltip",
+        "name": "disable tooltips",
+        "type": "control",
+        "url": "data/dummy.json",
+		"transparency": 1.0,
+		"display": true,
 		"cutFS": false
     }
 ]
