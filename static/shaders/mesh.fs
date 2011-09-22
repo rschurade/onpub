@@ -7,6 +7,7 @@ varying vec4 vPosition;
 varying vec3 vOrigPosition;
 varying vec4 vColor;
 varying vec3 vLightPos;
+varying float zPos;
 
 uniform vec3 uAmbientColor;
 uniform vec3 uPointLightingDiffuseColor;
@@ -66,6 +67,9 @@ void main(void)
 		{
 			discard;
 		}
+		
+		float aa = max( 0.0, 70.0 - zPos ); 
+		fragmentColor.a = min( 1.0, fragmentColor.a + ( aa / 80. ) );
 	}
 	
 	

@@ -12,10 +12,14 @@ varying vec4 vPosition;
 varying vec3 vOrigPosition;
 varying vec4 vColor;
 varying vec3 vLightPos;
+varying float zPos;
 
 void main(void) 
 {
 	vPosition = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+	
+	zPos = aVertexPosition.z;
+	
 	vOrigPosition = aVertexPosition;
 
 	vLightPos = uPointLightingLocation;
