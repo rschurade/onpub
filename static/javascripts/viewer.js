@@ -470,6 +470,8 @@ var Viewer = (function()
 	var screenMoveYNext;
 	var zoomNext;
 	
+	var transitionOngoing = false;
+	
 	function activateScene(id)
 	{
 		if ( rotateInterval )
@@ -500,6 +502,7 @@ var Viewer = (function()
 		screenMoveYOld = screenMoveY;
 		
 		step = 0;
+		transitionOngoing = true;
 		rotateInterval = setInterval(rotateToNextPosition, 30);
 	}
 	
@@ -526,6 +529,7 @@ var Viewer = (function()
 		screenMoveYOld = screenMoveY;
 		
 		step = 0;
+		transitionOngoing = true;
 		rotateInterval = setInterval(rotateToNextPosition2, 30);
 	}
 	
@@ -536,6 +540,7 @@ var Viewer = (function()
 		{
 			clearInterval(rotateInterval);
 			activateScene1(nextScene)
+			transitionOngoing = false;
 		}
 		
 		d = Math.log(step) / Math.log(20);
@@ -562,6 +567,7 @@ var Viewer = (function()
 		if ( step == 20 )
 		{
 			clearInterval(rotateInterval);
+			transitionOngoing = false;
 		}
 		
 		d = Math.log(step) / Math.log(20);
@@ -998,7 +1004,7 @@ var Viewer = (function()
 	{
 		if (!elem || !elem.display) return;
 		// bind buffers for rendering
-		if ( !leftMouseDown ) 
+		if ( !leftMouseDown && !middleMouseDown && !transitionOngoing ) 
 		{
 			sortMeshIndices( elem, mvMatrix, pMatrix );
 			elem.hasBuffer = false;
