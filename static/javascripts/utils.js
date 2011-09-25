@@ -258,4 +258,98 @@ function getOctant(m)
 	}
 	return octant;
 }		
+
+function sortMeshIndices( elem, mvMat, pMat )
+{
+	console.log("start sort: " + elem.name );
+	var numTris = elem.indices.length / 3;
+	var sortedTris = [numTris];
+	for ( var l = 0; l < numTris; ++l )
+	{
+		sortedTris[l] = l;
+	}
 	
+	var v1 = vec3.create();
+	var v2 = vec3.create();
+	var v3 = vec3.create();
+	var triMean = [];
+	for ( var ii = 0; ii < elem.indices.length; ++ii)
+	{
+		v1[0] = elem.vertices[elem.indices[ii]*3];
+		v1[1] = elem.vertices[elem.indices[ii]*3+1];
+		v1[2] = elem.vertices[elem.indices[ii]*3+2];
+		mat4.multiplyVec3(mvMat, v1);
+		++ii;
+		v2[0] = elem.vertices[elem.indices[ii]*3];
+		v2[1] = elem.vertices[elem.indices[ii]*3+1];
+		v2[2] = elem.vertices[elem.indices[ii]*3+2];
+		mat4.multiplyVec3(mvMat, v2);
+		++ii;
+		v3[0] = elem.vertices[elem.indices[ii]*3];
+		v3[1] = elem.vertices[elem.indices[ii]*3+1];
+		v3[2] = elem.vertices[elem.indices[ii]*3+2];
+		mat4.multiplyVec3(pMat, v3);
+		mat4.multiplyVec3(mvMat, v3);
+		
+		triMean.push( ( v1[2] + v2[2] + v3[2] ) / 3.0 );
+		
+	}
+	
+	quicksort(0, numTris -1 );
+	
+	elem.sortedIndices = [];
+	for ( var k = 0; k < numTris; ++k )
+	{
+		elem.sortedIndices.push( elem.indices[sortedTris[k]*3]);
+		elem.sortedIndices.push( elem.indices[sortedTris[k]*3+1]);
+		elem.sortedIndices.push( elem.indices[sortedTris[k]*3+2]);
+	}
+	console.log("end sort: " + elem.name );
+	
+	function quicksort( left, right )
+	{
+		if ( left < right )
+		{
+			div = divide( left, right );
+			
+			quicksort( left, div -1 );
+			quicksort( div + 1, right );
+		}
+	}
+	
+	function divide( left, right )
+	{
+		var i = left;
+		var j = right - 1;
+
+		var pivot = triMean[sortedTris[right]];
+		
+		do 
+		{
+			while ( ( triMean[sortedTris[i]] <= pivot ) && ( i < right ) )
+			{
+				++i;
+			}
+			while ( ( triMean[sortedTris[j]] > pivot ) && ( j > left ) )
+			{
+				--j;
+			}
+			if ( i < j )
+			{
+				var tmp = sortedTris[i];
+				sortedTris[i] = sortedTris[j];
+				sortedTris[j] = tmp;
+			}
+			
+		} while ( i < j );
+		
+		if ( triMean[sortedTris[i]] > pivot )
+		{
+			var tmp = sortedTris[i];
+			sortedTris[i] = sortedTris[right];
+			sortedTris[right] = tmp;
+		}
+		
+		return i;
+	}
+}

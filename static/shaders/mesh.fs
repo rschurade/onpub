@@ -65,11 +65,11 @@ void main(void)
 		float dir = dot(normal, normalize(vLightPos));
 		if ( dir < 0.0 )
 		{
-			discard;
+			//discard;
 		}
 		
-		float aa = max( 0.0, 70.0 - zPos ); 
-		fragmentColor.a = min( 1.0, fragmentColor.a + ( aa / 80. ) );
+		//float aa = max( 0.0, 70.0 - zPos ); 
+		//fragmentColor.a = min( 1.0, fragmentColor.a + ( aa / 80. ) );
 	}
 	
 	

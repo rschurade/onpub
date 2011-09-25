@@ -998,7 +998,13 @@ var Viewer = (function()
 	{
 		if (!elem || !elem.display) return;
 		// bind buffers for rendering
+		if ( !leftMouseDown ) 
+		{
+			sortMeshIndices( elem, mvMatrix, pMatrix );
+			elem.hasBuffer = false;
+		}
 		bindBuffers(elem);
+		
 		gl.bindBuffer(gl.ARRAY_BUFFER, elem.vertexPositionBuffer);
 		gl.bufferData(gl.ARRAY_BUFFER, elem.vertexPositionBuffer.data, gl.STATIC_DRAW);
 		gl.vertexAttribPointer(shaderPrograms['mesh'].vertexPositionAttribute, elem.vertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
@@ -1128,7 +1134,7 @@ var Viewer = (function()
 				vertexColorBuffer.numItems = elem.colors.length / 4;
 				
 				vertexIndexBuffer = gl.createBuffer();
-				vertexIndexBuffer.data = new Uint16Array(elem.indices)
+				vertexIndexBuffer.data = new Uint16Array(elem.sortedIndices)
 				vertexIndexBuffer.itemSize = 1;
 				vertexIndexBuffer.numItems = elem.indices.length;
 

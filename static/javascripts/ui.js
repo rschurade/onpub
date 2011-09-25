@@ -83,7 +83,7 @@
         });
         
         Viewer.bind('loadElementComplete', function(evt, data) {
-            if (config.debug) console.log('FINISHED ELEMENT:', data.id);
+            //if (config.debug) console.log('FINISHED ELEMENT:', data.id);
             $('#toggle-' + data.id).removeClass('disabled');
         });
         
@@ -215,15 +215,15 @@
         });
         
         if (config.debug) Viewer.bind('loadElementStart', function(evt, data) {
-            console.log('START ELEMENT:', data.id);
+            //console.log('START ELEMENT:', data.id);
         });
         
         if (config.debug) Viewer.bind('loadActivationComplete', function(evt, data) {
-            console.log('FINISHED ACTIVATION:', data.id);
+            //console.log('FINISHED ACTIVATION:', data.id);
         });
                 
         if (config.debug) Viewer.bind('loadActivationsComplete', function(evt, data) {
-            console.log('ALL ACTIVATIONS LOADED.');
+            //console.log('ALL ACTIVATIONS LOADED.');
         });
         
         var $viewerTooltip = $('<div id="tooltip"></div>');
