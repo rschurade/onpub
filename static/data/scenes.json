@@ -53,7 +53,7 @@
 	},
 	{
 		"id": "fig3",
-		"cameraPosition": [1.57, -1.57, 0.0],
+		"cameraPosition": [2.0, -2.0, 0.2],
 		"cameraTranslation": [-40, 0],
 		"cameraZoom": 1.5,
 		"elementsAvailable": ["lhemi1", 
@@ -61,26 +61,26 @@
 		"elementsActive": ["lhemi1", "fib1",  "fib9",  "fib11",  "fib13",  "fib15",  "fib19"],
 		"activationsAvailable": [],
 		"activationsActive": [],
-		"slices": [75, 100, 76],
+		"slices": [0, 0, 73],
 		"colorTextures": false,
 		"secondaryTexture": "none"
 	},
 	{
 		"id": "fig4",
-		"cameraPosition": [1.57, -1.57, 0.0],
+		"cameraPosition": [2.3, -2.5, 0.4],
 		"cameraTranslation": [0, 0],
 		"cameraZoom": 1.0,
 		"elementsAvailable": ["lhemi3", "fib24", "fib25"],
 		"elementsActive": ["lhemi3", "fib24", "fib25"],
 		"activationsAvailable": [],
 		"activationsActive": [],
-		"slices": [74, 100, 80],
+		"slices": [0, 115, 73],
 		"colorTextures": false,
 		"secondaryTexture": "none"
 	},
 	{
 		"id": "fig5",
-		"cameraPosition": [1.8, -2.0, 0.2],
+		"cameraPosition": [2.1, -2.3, 0.4],
 		"cameraTranslation": [0, 0],
 		"cameraZoom": 1.0,
 		"elementsAvailable": ["fib1",  "fib2",  "fib3",  "fib4",  "fib5",  "fib6",  "fib7",  "fib8",  "fib9",  "fib10",
@@ -95,7 +95,7 @@
 	},
 	{
 		"id": "fig5a",
-		"cameraPosition": [1.8, -2.0, 0.2],
+		"cameraPosition": [2.1, -2.3, 0.4],
 		"cameraTranslation": [0, 0],
 		"cameraZoom": 1.0,
 		"elementsAvailable": ["fib1",  "fib2",  "fib3",  "fib4",  "fib5",  "fib6",  "fib7",  "fib8",  "fib9",  "fib10",
@@ -110,7 +110,7 @@
 	},
 	{
 		"id": "fig6",
-		"cameraPosition": [1.8, -2.0, 0.2],
+		"cameraPosition": [2.1, -2.3, 0.4],
 		"cameraTranslation": [0, 0],
 		"cameraZoom": 1.0,
 		"elementsAvailable": [],
@@ -127,7 +127,7 @@
 								"ifg31",  "tc32",  "tc33",  "tc34",  "tc35",  "tc36",  "tc37",  "tc38",  "tc39",  "tc40",
 								"tc41",   "tc42",  "tc43",  "tc44",  "tc45",  "tc46",  "tc47",  "tc48",  "tc49",  "tc50", 
 								"tc51",   "tc52",  "tc53"],
-		"slices": [80, 100, 80],
+		"slices": [47, 100, 80],
 		"colorTextures": false,
 		"secondaryTexture": "none"
 	},
@@ -159,7 +159,7 @@
 	},
 	{
 		"id": "fig9",
-		"cameraPosition": [0, 0, -1.57],
+		"cameraPosition": [2.25, -2.45, 0.6],
 		"cameraTranslation": [0, 0],
 		"cameraZoom": 1.0,
 		"elementsAvailable": ["fib1",  "fib9",  "fib11",  "fib13",  "fib15",  "fib19"],
@@ -172,20 +172,20 @@
 	},
 	{
 		"id": "fig10",
-		"cameraPosition": [1.8, -2.0, 0.2],
+		"cameraPosition": [2.2, -2.2, 0.4],
 		"cameraTranslation": [0, 0],
 		"cameraZoom": 1.0,
 		"elementsAvailable": [],
-		"elementsActive": ["offset"],
-		"activationsAvailable": ["of01","of02","of03"],
-		"activationsActive": ["of01","of02","of03"],
+		"elementsActive": [],
+		"activationsAvailable": ["of01","of02"],
+		"activationsActive": ["of01","of02"],
 		"slices": [80, 80, 69],
 		"colorTextures": false,
 		"secondaryTexture": "none"
 	},
 	{
 		"id": "fig11",
-		"cameraPosition": [1.8, -2.0, 0.2],
+		"cameraPosition": [2.2, -2.4, 0.5],
 		"cameraTranslation": [0, 0],
 		"cameraZoom": 1.0,
 		"elementsAvailable": [],
@@ -228,14 +228,14 @@
 	},
 	{
 		"id": "fig13",
-		"cameraPosition": [1.57, -1.57, 0.0],
+		"cameraPosition": [1.00, -1.00, -0.57],
 		"cameraTranslation": [0, 0],
 		"cameraZoom": 1.0,
 		"elementsAvailable": ["lhemi3", "fib1",  "fib9",  "fib11",  "fib13",  "fib15",  "fib19"],
 		"elementsActive": ["fib1",  "fib9",  "fib11",  "fib13",  "fib15",  "fib19"],
 		"activationsAvailable": [],
 		"activationsActive": [],
-		"slices": [80, 100, 80],
+		"slices": [80, 0, 80],
 		"colorTextures": false,
 		"secondaryTexture": "none"
 	}

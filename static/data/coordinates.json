@@ -474,7 +474,7 @@
 { 
 	"id": "of02", 
 	"name": "Broca's area",
-	"coord": {"x": -40, "y": -8,"z":18},
+	"coord": {"x": -40, "y": 8,"z":18},
 	"color": {"r": 1.0, "g": 0.0, "b": 0.0},
 	"size": 3.0,
 	"display": true	

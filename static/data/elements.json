@@ -302,7 +302,7 @@
     },
 	{
         "id": "fib24",
-        "name": "ac-06",
+        "name": "arcuate fascicle - BA06",
         "type": "fibre",
         "url": "data/fib_ac06.json",
 		"transparency": 1.0,
@@ -312,7 +312,7 @@
     },
 	{
         "id": "fib25",
-        "name": "ac-44",
+        "name": "arcuate fascicle - BA44",
         "type": "fibre",
         "url": "data/fib_ac44.json",
 		"transparency": 1.0,
